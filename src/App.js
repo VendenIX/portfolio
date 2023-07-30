@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './pages/Header';
-import AboutMe from './pages/AboutMe';
-import Projects from './pages/Projects';
+import Header from './pages/Header/';
+import AboutMe from './pages/AboutMe/';
+import Projects from './pages/Projects/';
 import Skills from './pages/Skills';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/';
 
 const App = () => {
     return (
