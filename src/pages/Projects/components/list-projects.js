@@ -10,7 +10,7 @@ const ListProjects = ({projects}) => {
                     key={index}
                     title={project.title}
                     description={project.description}
-                    image={project.image}
+                    images={project.images}
                     video={project.video}
                     githubLink={project.githubLink}
                 />

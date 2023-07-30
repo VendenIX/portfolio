@@ -1,12 +1,13 @@
 // src/pages/projects/components/Project.js
 import React from 'react';
 import { Box, Stack } from '@mui/material';
-const Project = ({title, description, image, video, githubLink}) => {
+import ListImages from './list-images';
+const Project = ({title, description, images, video, githubLink}) => {
     return (
         <div>
             <h2>{title}</h2>
             <p>{description}</p>
-            <img src={image} alt={title} />
+            <ListImages images={images} />
             <Stack direction='row' justifyContent='center'>
                 <Box
                     sx={{
