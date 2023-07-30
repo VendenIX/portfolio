@@ -1,12 +1,12 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-
+import translations from '../translations/fr.js';
 const AboutMe = () => {
     return (
-        <div>
+        <div style={{ padding: '20px' }}>
             <Typography variant="h4">À propos de moi</Typography>
             <Typography variant="body1">
-                Je suis un développeur web passionné par la création d'applications web. Je maîtrise React, Material UI et d'autres technologies.
+                {translations['about.big_description']}
             </Typography>
         </div>
     );

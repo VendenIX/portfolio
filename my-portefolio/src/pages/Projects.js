@@ -3,7 +3,7 @@ import { Card, CardContent, Typography } from '@mui/material';
 
 const Projects = () => {
     return (
-        <div>
+        <div style={{ padding: '20px' }}>
             <Typography variant="h4">Mes Projets</Typography>
             <Card>
                 <CardContent>

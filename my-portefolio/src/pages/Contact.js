@@ -3,7 +3,7 @@ import { Typography, TextField, Button } from '@mui/material';
 
 const Contact = () => {
     return (
-        <div>
+        <div style={{ padding: '20px' }}>
             <Typography variant="h4">Contactez-moi</Typography>
             <form>
                 <TextField label="Nom" variant="outlined" />

@@ -9,8 +9,8 @@ const App = () => {
     return (
         <div>
             <Header />
-            <AboutMe />
             <Projects />
+            <AboutMe />
             <Skills />
             <Contact />
         </div>
