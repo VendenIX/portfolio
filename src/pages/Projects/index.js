@@ -29,7 +29,9 @@ const Projects = () => {
     ];
 
     return(
-            <ListProjects projects={projects} />
+            <section id="projets">
+                <ListProjects projects={projects} />
+            </section>
     );
 };
 
