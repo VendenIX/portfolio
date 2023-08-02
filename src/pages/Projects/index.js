@@ -58,7 +58,12 @@ const Projects = ({ onSelect }) => {
                     onClose={handleClose}
                 />
             ) : (
-                <ListProjects projects={projects} onSelect={handleSelect} />
+                <div>
+                    <div style={{ padding: '20px', marginLeft:"5em" }}>
+                        <Typography variant="h4">Projects</Typography>
+                    </div>
+                    <ListProjects projects={projects} onSelect={handleSelect} />
+                </div>
             )}
         </section>
     );
