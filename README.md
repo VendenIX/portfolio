@@ -7,3 +7,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm start`
+
+<strong><a href="https://vendenix.github.io/portfolio/" > My portfolio</a></strong>
