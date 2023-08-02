@@ -1,12 +1,13 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import ProfileImage from '../../assets/p1.jpg';
-
+import '../../App.css';
 const Home = () => {
     return (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <Typography variant="h3">Étudiant en Intelligence Artificielle</Typography>
+                <Box  sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Typography class="typing-demo" variant="h3">Étudiant en Intelligence Artificielle :)</Typography>
+
                     <Typography variant="body1">Je suis passionné par l'intelligence artificielle et j'aimerais apporter ma contribution à ce domaine fascinant.</Typography>
                 </Box>
                 
