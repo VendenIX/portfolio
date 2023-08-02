@@ -45,11 +45,12 @@ const Header = () => {
         <section id="home">
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' , marginBottom: '4em'}}>
                 <AppBar position="fixed" color="primary" sx={{ maxWidth: '100%', background: '#38B3FF', paddingRight: '10em'}}>
-                    <Toolbar sx={{ justifyContent: 'space-between' }}>
-                        {!isMobile && renderMenuItems()}
-                        <IconButton color="inherit" onClick={() => toggleDrawer(true)} sx={{ display: isMobile ? 'block' : 'none' }}>
-                            <MenuIcon />
-                        </IconButton>
+                    <Toolbar sx={{ justifyContent: 'flex-end'}}>
+                        {isMobile ? (
+                            <IconButton sx={{marginRight: '-7em'}}color="inherit" onClick={() => toggleDrawer(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                        ) : renderMenuItems()}
                     </Toolbar>
                 </AppBar>
                 <Drawer anchor="right" open={drawerOpen} onClose={() => toggleDrawer(false)}>

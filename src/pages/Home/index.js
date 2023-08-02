@@ -9,13 +9,12 @@ const Home = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const isSmallHeight = useMediaQuery('(max-height:850px)');
-    const isSpecificSize = useMediaQuery('(min-width:390px) and (max-width:414px) and (min-height:844px) and (max-height:896px)');
 
     const nameStyle = isSmallScreen
         ? { textAlign: 'center', margin: '1em 0' }
         : { marginLeft: '3em', marginRight: '1.3em' };
 
-    const imageSize = isSpecificSize ? 150 : (isSmallScreen ? 100 : 200);
+    const imageSize = isSmallScreen ? 100 : 200;
 
     const contentStyle = isSmallScreen || isSmallHeight
         ? { margin: '1em', marginTop: '2em', textAlign: 'center', fontSize: isSmallScreen ? '0.8em' : '1em' }
@@ -23,7 +22,7 @@ const Home = () => {
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', flexDirection: (isSmallHeight || isSpecificSize) ? 'column' : 'row', alignItems: 'center', marginTop: isSmallScreen ? '5em' : '15em' }}>
+            <Box sx={{ display: 'flex', flexDirection: isSmallHeight ? 'column' : 'row', alignItems: 'center', marginTop: isSmallScreen ? '5em' : '15em' }}>
                 <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
                 <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2 }}>
                     <img
