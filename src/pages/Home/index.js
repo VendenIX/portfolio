@@ -27,7 +27,7 @@ const Home = () => {
         <Box>
             <Box sx={{ display: 'flex', flexDirection: isSmallHeight || isLaptop ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', marginTop: marginTopForName }}>
                 <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
-                <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2 }}>
+                <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2 , marginBottom: '4em'}}>
                     <img
                         src={ProfileImage}
                         alt="Profile"
