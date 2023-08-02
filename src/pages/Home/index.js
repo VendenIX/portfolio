@@ -9,20 +9,23 @@ const Home = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const isSmallHeight = useMediaQuery('(max-height:850px)');
+    const isLaptop = useMediaQuery('(max-width:1300px) and (max-height:850px)');
 
-    const nameStyle = isSmallScreen
+    const nameStyle = isSmallScreen || isLaptop
         ? { textAlign: 'center', margin: '1em 0' }
         : { marginLeft: '3em', marginRight: '1.3em' };
 
-    const imageSize = isSmallScreen ? 100 : 200;
+    const imageSize = isSmallScreen || isLaptop ? 100 : 200;
 
-    const contentStyle = isSmallScreen || isSmallHeight
-        ? { margin: '1em', marginTop: '2em', textAlign: 'center', fontSize: isSmallScreen ? '0.8em' : '1em' }
+    const contentStyle = isSmallScreen || isLaptop
+        ? { margin: '1em', marginLeft: '13em', marginBottom: '20em', fontSize: isSmallScreen ? '0.8em' : '1em' }
         : { marginLeft: '3em', marginTop: '-50em' };
+
+    const marginTopForName = isLaptop ? '1em' : (isSmallScreen ? '5em' : '15em');
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', flexDirection: isSmallHeight ? 'column' : 'row', alignItems: 'center', marginTop: isSmallScreen ? '5em' : '15em' }}>
+            <Box sx={{ display: 'flex', flexDirection: isSmallHeight || isLaptop ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', marginTop: marginTopForName }}>
                 <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
                 <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2 }}>
                     <img
@@ -32,9 +35,9 @@ const Home = () => {
                     />
                 </Box>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isLaptop ? '60vh' : '100vh' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', ...contentStyle }}>
-                    <Typography className="typing-demo" variant="h3" style={{ fontSize: isSmallScreen ? '1.2em' : 'inherit' }}>Student in AI, data analysis access on health !</Typography>
+                    <Typography className="typing-demo" variant="h3" style={{ fontSize: isSmallScreen ? '1.2em' : 'inherit' }}><strong>Student in AI, data analysis access on health !</strong></Typography>
                     <Typography variant="body1">I aspire to contribute to the field of AI and make a difference in the field of medicine by developing innovative technological solutions.</Typography>
                 </Box>
             </Box>
