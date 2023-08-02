@@ -22,8 +22,8 @@ const App = () => {
                 <Header />
                 <Home />
                 <Projects onSelect={setSelectedProject} />
-                <AboutMe />
                 <Skills />
+                <AboutMe />
                 <Contact />
             </div>
         </ThemeProvider>

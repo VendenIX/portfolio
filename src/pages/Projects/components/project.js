@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box, Stack } from '@mui/material';
 import ListImages from './list-images';
-const Project = ({title, description, images, video, githubLink}) => {
+const Project = ({title, description,technologies, images, video, githubLink}) => {
     return (
         <div>
             <h2>{title}</h2>
