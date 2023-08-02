@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; 
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import ListProjects from './components/list-projects';
 import { Box } from '@mui/system';
 import img1 from '../../assets/project1/p1.png';
@@ -44,9 +44,13 @@ const Projects = ({ onSelect }) => {
         setSelectedProject(null);
     };
 
+    const redirectToGitHub = () => {
+        window.open('https://github.com/VendenIX?tab=repositories', '_blank');
+    };
+
 
     return (
-        <section id="projects" style={{ minHeight: '100vh'}}>
+        <section id="projects" style={{  padding:'5em'}}>
             {selectedProject ? (
                 <ProjectDetails 
                     title={selectedProject.title}
@@ -63,6 +67,11 @@ const Projects = ({ onSelect }) => {
                         <Typography variant="h4">Projects</Typography>
                     </div>
                     <ListProjects projects={projects} onSelect={handleSelect} />
+                    <Box display="flex" justifyContent="center" style={{marginTop:'5em'}} mt={3}>
+                        <Button variant="contained" color="primary" onClick={redirectToGitHub}>
+                            See all projects on GitHub
+                        </Button>
+                    </Box>
                 </div>
             )}
         </section>

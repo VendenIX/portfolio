@@ -1,10 +1,9 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import translations from '../../translations/fr.js';
 
 const AboutMe = () => {
     return (
-        <section id="aboutMe" style={{ minHeight: '100vh', marginLeft: '5em' }}>
+        <section id="aboutMe" style={{ padding: '5em' }}>
             <div style={{ padding: '20px' }}>
                 <Typography variant="h4">About me</Typography>
             </div>

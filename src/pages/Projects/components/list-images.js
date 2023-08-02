@@ -6,7 +6,7 @@ const ListImages = ({ images }) => {
         <Box display='flex' justifyContent='center' alignItems='center' flexDirection='column' position='relative' zIndex={0}>
             <Carousel
                 animation='fade'
-                navButtonsAlwaysInvisible={false}
+                navButtonsAlwaysInvisible={true} // Masque les flèches de navigation
                 autoPlay={true}
                 interval={3000}
                 indicators={false}

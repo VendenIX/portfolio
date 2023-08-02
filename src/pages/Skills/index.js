@@ -36,8 +36,9 @@ const Skills = () => {
     const otherSkills = [
         "Networking",
         "Scrapping Selenium",
-        "Python, C",
-        "Numpy, Scipy, Matplotlib",
+        "Python, Numpy, Scipy, Matplotlib",
+        "Java, Android, Swing, JavaFX, JUnit",
+        "C, C++, SFML, SDL2",
         "Git",
         "Virtual Machines",
     ];

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import translations from '../../translations/fr.js';
 
 const Contact = () => {
     return (
-        <section id="contact" style={{ minHeight: '100vh' }}>
+        <section id="contact" style={{ minHeight: '100vh' , padding: '5em'}}>
             <div style={{ padding: '20px' }}>
-                <Typography variant="h4">{translations['contact.me']}</Typography>
+                <div >
+                <Typography variant="h4"> Contact me</Typography>
+                </div>
                 <ul>
                 <li>
                         <strong>Email:</strong>{" "}
