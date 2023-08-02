@@ -25,9 +25,15 @@ const Home = () => {
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', flexDirection: isSmallHeight || isLaptop ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', marginTop: marginTopForName }}>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: isLaptop ? 'row-reverse' : (isSmallHeight ? 'column' : 'row'),
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: marginTopForName
+            }}>
                 <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
-                <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2 , marginBottom: '4em'}}>
+                <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2, marginBottom: isLaptop ? '0em' : '7em' }}>
                     <img
                         src={ProfileImage}
                         alt="Profile"
@@ -43,6 +49,8 @@ const Home = () => {
             </Box>
         </Box>
     );
+    
+    
 };
 
 export default Home;
