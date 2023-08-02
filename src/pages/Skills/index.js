@@ -11,7 +11,7 @@ const Skills = () => {
     ];
 
     return (
-        <section id="skills">
+        <section id="skills" style={{ minHeight: '100vh' }}>
             <div style={{ padding: '20px' }}>
                 <Typography variant="h4">Compétences</Typography>
                 <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-between">

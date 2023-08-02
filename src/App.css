@@ -1,3 +1,7 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
 .App {
   text-align: center;
 }
@@ -36,3 +40,10 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #38B3FF;
+  color: #fff;
+  font-family: 'Roboto Mono', monospace;
+}
+

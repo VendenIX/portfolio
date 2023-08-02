@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import translations from '../../translations/fr.js';
 const AboutMe = () => {
     return (
-        <section id="a-propos">
+        <section id="a-propos" style={{ minHeight: '100vh' }}>
             <div style={{ padding: '20px' }}>
                 <Typography variant="h4">À propos de moi</Typography>
                 <Typography variant="body1">

@@ -1,21 +1,15 @@
-// src/pages/projects/components/ListProjects.js
 import React from 'react';
-import Project from './project';
-
-const ListProjects = ({projects}) => {
+import { Grid } from '@mui/material';
+import ProjectBadge from './projet-badge';
+const ListProjects = ({ projects, onSelect }) => {
     return (
-        <div>
-            {projects.map((project, index) => 
-                <Project 
-                    key={index}
-                    title={project.title}
-                    description={project.description}
-                    images={project.images}
-                    video={project.video}
-                    githubLink={project.githubLink}
-                />
-            )}
-        </div>
+        <Grid container spacing={2} justifyContent="space-between">
+            {projects.map((project, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                    <ProjectBadge project={project} onSelect={onSelect} />
+                </Grid>
+            ))}
+        </Grid>
     );
 };
 

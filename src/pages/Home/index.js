@@ -4,7 +4,7 @@ import ProfileImage from '../../assets/p1.jpg';
 
 const Home = () => {
     return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <Typography variant="h3">Étudiant en Intelligence Artificielle</Typography>
                     <Typography variant="body1">Je suis passionné par l'intelligence artificielle et j'aimerais apporter ma contribution à ce domaine fascinant.</Typography>

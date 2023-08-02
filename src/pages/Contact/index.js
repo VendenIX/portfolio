@@ -3,7 +3,7 @@ import { Typography, TextField, Button } from '@mui/material';
 import translations from '../../translations/fr.js';
 const Contact = () => {
     return (
-        <section id="contact">
+        <section id="contact" style={{ minHeight: '100vh' }}>
             <div style={{ padding: '20px' }}>
                 <Typography variant="h4">{translations['contact.me']}</Typography>
                 <p align="left">

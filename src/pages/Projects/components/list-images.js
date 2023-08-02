@@ -1,18 +1,24 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+import { Box } from '@mui/material';
+import Carousel from 'react-material-ui-carousel';
 
 const ListImages = ({ images }) => {
     return (
-        <Grid container spacing={2}>
-            {images.map((image, index) => (
-                <Grid item xs={6} key={index}>
-                    <Paper>
-                        <img src={image} alt={`Project ${image}`} style={{ width: "auto", height: "20em", }} />
-                    </Paper>
-                </Grid>
-            ))}
-        </Grid>
+        <Box display='flex' justifyContent='center' alignItems='center' flexDirection='column' position='relative' zIndex={0}>
+            <Carousel
+                animation='fade'
+                navButtonsAlwaysInvisible={false}
+                autoPlay={true}
+                interval={3000}
+                indicators={false}
+                sx={{ width: '100%', marginBottom: 3 }}
+            >
+                {images.map((image, index) => (
+                    <Box key={index} display='flex' justifyContent='center'>
+                        <img src={image} alt={`Project ${index}`} style={{ width: "auto", height: "20em" }} />
+                    </Box>
+                ))}
+            </Carousel>
+        </Box>
     );
 };
 
