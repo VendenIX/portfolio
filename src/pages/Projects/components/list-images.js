@@ -10,11 +10,11 @@ const ListImages = ({ images }) => {
                 autoPlay={true}
                 interval={3000}
                 indicators={false}
-                sx={{ width: '100%', marginBottom: 3 }}
+                sx={{ width: '100%', marginBottom: 3}}
             >
                 {images.map((image, index) => (
                     <Box key={index} display='flex' justifyContent='center'>
-                        <img src={image} alt={`Project ${index}`} style={{ width: "auto", height: "20em" }} />
+                        <img src={image} alt={`Project ${index}`} style={{ width: "auto", height: "25em" }} />
                     </Box>
                 ))}
             </Carousel>
