@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Button, Box, IconButton, Drawer, List, ListItem, useTheme, useMediaQuery } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const sections = ['#home', '#projects', '#skills','#aboutMe', '#contact'];
 
 const Header = () => {
     const [activeSection, setActiveSection] = useState('#home');
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down(575));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,22 +26,41 @@ const Header = () => {
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-        }
+        };
     }, []);
 
+    const toggleDrawer = (isOpen) => {
+        setDrawerOpen(isOpen);
+    };
+
+    const renderMenuItems = (isInDrawer = false) => (
+        sections.map((section, index) => (
+            <Button key={index} color="inherit" href={section} style={{ textDecoration: activeSection === section ? "underline" : "none", padding: isInDrawer ? '1em' : undefined }}>
+                {section.substring(1)}
+            </Button>
+        ))
+    );
 
     return (
         <section id="home">
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' , marginBottom: '4em'}}>
                 <AppBar position="fixed" color="primary" sx={{ maxWidth: '100%', background: '#38B3FF', paddingRight: '10em'}}>
-                    <Toolbar sx={{ justifyContent: 'flex-end' }}>
-                        <Button color="inherit" href="#home" style={{ textDecoration: activeSection === "#home" ? "underline" : "none"}}>Home</Button>
-                        <Button color="inherit" href="#projects" style={{ textDecoration: activeSection === "#projets" ? "underline" : "none"}}>Projects</Button>
-                        <Button color="inherit" href="#skills" style={{ textDecoration: activeSection === "#skills" ? "underline" : "none"}}>Skills</Button>
-                        <Button color="inherit" href="#aboutMe" style={{ textDecoration: activeSection === "#a-propos" ? "underline" : "none"}}>About me</Button>
-                        <Button color="inherit" href="#contact" style={{ textDecoration: activeSection === "#contact" ? "underline" : "none"}}>Contact</Button>
+                    <Toolbar sx={{ justifyContent: 'space-between' }}>
+                        {!isMobile && renderMenuItems()}
+                        <IconButton color="inherit" onClick={() => toggleDrawer(true)} sx={{ display: isMobile ? 'block' : 'none' }}>
+                            <MenuIcon />
+                        </IconButton>
                     </Toolbar>
                 </AppBar>
+                <Drawer anchor="right" open={drawerOpen} onClose={() => toggleDrawer(false)}>
+                    <List>
+                        {renderMenuItems(true).map((item, index) => (
+                            <ListItem key={index} button onClick={() => toggleDrawer(false)}>
+                                {item}
+                            </ListItem>
+                        ))}
+                    </List>
+                </Drawer>
             </Box>
         </section>
     );
