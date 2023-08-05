@@ -29,24 +29,27 @@ const Home = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-
-            marginTop: marginTopForName
         }}>
-                <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
-                <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2}}>
-                    <img
-                        src={ProfileImage}
-                        alt="Profile"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                </Box>
-            
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: isLaptop ? '60vh' : '100vh' }}>
+            {/* TITRE*/}
+            <Typography variant="h1" style={nameStyle}>Romain Andres</Typography>
+
+            {/* PHOTO DE PROFIL*/}
+            <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2}}>
+                <img
+                    src={ProfileImage}
+                    alt="Profile"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </Box>
+
+            {/* TEXTE DE PRESENTATION*/}
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: isSmallScreen ? '0em' : '28em' }}>
                 <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', ...contentStyle }}>
                     <Typography className="typing-demo" variant="h3" style={{ width: '35%',fontSize: isSmallScreen ? '1.2em' : 'inherit' }}><strong>Student in AI, data analysis access on health !</strong></Typography>
                     <Typography variant="body1">I aspire to contribute to the field of AI and make a difference in the field of medicine by developing innovative technological solutions.</Typography>
                 </Box>
             </Box>
+
         </Box>
     );
     
