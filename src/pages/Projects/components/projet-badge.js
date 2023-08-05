@@ -20,8 +20,7 @@ const BadgeCard = styled(Card)({
       width: '80%', 
     },
     '@media (max-width:400px)': {
-      width: '200%', 
-      margin: '-5em'
+      width: '90%'
     }
   });
   
