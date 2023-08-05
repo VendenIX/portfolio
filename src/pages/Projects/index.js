@@ -50,7 +50,7 @@ const Projects = ({ onSelect }) => {
 
 
     return (
-        <section id="projects" style={{  padding:'5em'}}>
+        <section id="projects">
             {selectedProject ? (
                 <ProjectDetails 
                     title={selectedProject.title}
