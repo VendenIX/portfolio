@@ -8,7 +8,6 @@ import '../../App.css';
 const Home = () => {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    const isSmallHeight = useMediaQuery('(max-height:850px)');
     const isLaptop = useMediaQuery('(max-width:1300px) and (max-height:850px)');
 
     const nameStyle = isSmallScreen || isLaptop
@@ -21,7 +20,6 @@ const Home = () => {
         ? { margin: '1em', marginRight: '5em', marginLeft: '5em', marginBottom: '20em', fontSize: isSmallScreen ? '0.8em' : '1em', width: '60%' }
         : { marginLeft: '3em', marginTop: '-50em' };
 
-    const marginTopForName = isLaptop ? '1em' : (isSmallScreen ? '5em' : '15em');
 
     return (
         <Box sx={{
@@ -45,7 +43,12 @@ const Home = () => {
             {/* TEXTE DE PRESENTATION*/}
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: isSmallScreen ? '0em' : '28em' }}>
                 <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', ...contentStyle }}>
-                    <Typography className="typing-demo" variant="h3" style={{ width: '35%',fontSize: isSmallScreen ? '1.2em' : 'inherit' }}><strong>Student in AI, data analysis access on health !</strong></Typography>
+                    {!isSmallScreen ? (
+                        <Typography className="typing-demo" variant="h3" style={{ width: '35%', fontSize: 'inherit' }}>
+                                <strong>Student in AI, data analysis access on health !</strong>
+                        </Typography>
+                        ) : null}
+
                     <Typography variant="body1">I aspire to contribute to the field of AI and make a difference in the field of medicine by developing innovative technological solutions.</Typography>
                 </Box>
             </Box>

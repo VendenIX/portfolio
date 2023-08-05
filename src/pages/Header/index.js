@@ -47,7 +47,7 @@ const Header = () => {
                 <AppBar position="fixed" color="primary" sx={{ maxWidth: '100%', background: '#38B3FF', paddingRight: '10em'}}>
                     <Toolbar sx={{ justifyContent: 'flex-end'}}>
                         {isMobile ? (
-                            <IconButton sx={{marginRight: '-7em'}}color="inherit" onClick={() => toggleDrawer(true)}>
+                            <IconButton sx={{marginRight: '-6em'}}color="inherit" onClick={() => toggleDrawer(true)}>
                                 <MenuIcon />
                             </IconButton>
                         ) : renderMenuItems()}

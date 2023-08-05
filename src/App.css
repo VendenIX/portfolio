@@ -54,11 +54,12 @@ body {
 }
 
 .typing-demo {
-  width: 47ch;
   animation: typing 2s steps(22), blink .5s step-end infinite alternate;
   white-space: nowrap;
+  text-align: center;
+  padding: '1em';
   overflow: hidden;
-  border-right: 3px solid;
+  border-right: 2px solid;
 }
 
 @keyframes typing {
