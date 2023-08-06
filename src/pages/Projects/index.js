@@ -64,7 +64,7 @@ const Projects = ({ onSelect }) => {
             ) : (
                 <div>
                     <div style={{ padding: '20px', marginLeft:"5em" }}>
-                        <Typography variant="h4">Projects</Typography>
+                        <Typography style={{marginTop: '2em'}}variant="h4">Projects</Typography>
                     </div>
                     <ListProjects projects={projects} onSelect={handleSelect} />
                     <Box display="flex" justifyContent="center" style={{marginTop:'5em'}} mt={3}>
