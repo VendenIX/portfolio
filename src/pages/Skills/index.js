@@ -17,6 +17,7 @@ const Skills = () => {
     ];
 
     const databaseSkills = [
+        "SQL",
         "MySQL",
         "MongoDB",
         "MariaDB",
