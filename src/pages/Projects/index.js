@@ -11,6 +11,7 @@ import img6 from '../../assets/project2/p2.png';
 import img7 from '../../assets/project2/p3.png';
 import img8 from '../../assets/project2/p4.png';
 import img9 from '../../assets/project3/p1.png';
+import img10 from '../../assets/project3/p2.gif';
 import ProjectDetails from './components/ProjectDetails';
 
 const Projects = ({ onSelect }) => {
@@ -39,7 +40,7 @@ const Projects = ({ onSelect }) => {
             title: "AI vs. AI Virus Board Game Battle using Minmax/Alpha-Beta",
             description: "\"Virus Infection Battle\" is a captivating game that offers a unique opportunity to observe the strategic showdown between two AI opponents utilizing Minimax and Alpha-Beta Pruning algorithms at varying search depths. Players are immersed in a thrilling board game where the goal is to infect the opponent's territory with strategic moves. The game showcases the impact of search depth on AI decision-making, providing insights into how different levels of exploration influence gameplay outcomes. As players witness the AI agents battle it out, they can visualize the nodes explored and the number of iterations undertaken by each algorithm. \"Virus Infection Battle\" is a compelling experience that sheds light on the power of AI-driven strategies and their ability to navigate complex scenarios, ultimately leading to a greater understanding of the role of search depth in AI gameplay. Rules of the game are simple : Two players, Red and Blue, start with two tokens each on a 7x7 grid. Blue goes first. The winner is the one with more tokens at the end. The game ends when: 1. A player has no tokens left, 2. Both players pass, 3. The board repeats a state. On their turn, a player can clone or jump their token. Cloning places a new token one space away. Jumping moves a token two spaces, passing over others. If no move, they pass. Adjacent opponent tokens to a moved or cloned token turn to the active player's color. Then, the next player goes.",
             technologies: ['Java', 'Pseudo-code'],
-            images: [img9],
+            images: [img9,img10],
             video: 'https://www.youtube.com/embed/oQxr1ursKIU',
             githubLink: 'https://github.com/VendenIX/JeuInfection'
         }
