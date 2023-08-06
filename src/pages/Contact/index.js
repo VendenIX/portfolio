@@ -3,10 +3,10 @@ import { Typography } from '@mui/material';
 
 const Contact = () => {
     return (
-        <section id="contact" style={{ minHeight: '110vh' }}>
+        <section id="contact" style={{ padding: '5em' , minHeight: '110vh' }}>
             <div>
                 <div >
-                <Typography style={{paddingLeft: '2em', marginTop: '2em'}} variant="h4"> Contact me</Typography>
+                <Typography style={{marginTop: '2em'}} variant="h4"> Contact me</Typography>
                 </div>
                 <ul>
                 <li>

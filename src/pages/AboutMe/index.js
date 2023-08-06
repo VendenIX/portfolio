@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 
 const AboutMe = () => {
     return (
-        <section id="aboutMe" style={{ padding: '5em' }}>
+        <section id="aboutMe" style={{ padding: '5em' , minHeight: '110vh' }}>
             <div style={{ padding: '20px' }}>
                 <Typography variant="h4">About me</Typography>
             </div>
