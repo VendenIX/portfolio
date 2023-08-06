@@ -10,6 +10,7 @@ import img5 from '../../assets/project2/p1.png';
 import img6 from '../../assets/project2/p2.png';
 import img7 from '../../assets/project2/p3.png';
 import img8 from '../../assets/project2/p4.png';
+import img9 from '../../assets/project3/p1.png';
 import ProjectDetails from './components/ProjectDetails';
 
 const Projects = ({ onSelect }) => {
@@ -32,7 +33,17 @@ const Projects = ({ onSelect }) => {
             images: [img5, img6, img7, img8],
             video: 'https://www.youtube.com/embed/SIk_-tes1vU',
             githubLink: 'https://github.com/VendenIX/Generateur-de-flore-video-ludique'
+        },
+        {
+            id: 3,
+            title: "AI vs. AI Board Game Battle using Minimax/Alpha-Beta",
+            description: "\"Virus Infection Battle\" is a captivating game that offers a unique opportunity to observe the strategic showdown between two AI opponents utilizing Minimax and Alpha-Beta Pruning algorithms at varying search depths. Players are immersed in a thrilling board game where the goal is to infect the opponent's territory with strategic moves. The game showcases the impact of search depth on AI decision-making, providing insights into how different levels of exploration influence gameplay outcomes. As players witness the AI agents battle it out, they can visualize the nodes explored and the number of iterations undertaken by each algorithm. \"Virus Infection Battle\" is a compelling experience that sheds light on the power of AI-driven strategies and their ability to navigate complex scenarios, ultimately leading to a greater understanding of the role of search depth in AI gameplay.",
+            technologies: ['Java', 'Pseudo-code'],
+            images: [img9],
+            video: 'https://www.youtube.com/embed/oQxr1ursKIU',
+            githubLink: 'https://github.com/VendenIX/JeuInfection'
         }
+
     ];
 
     const handleSelect = id => {
