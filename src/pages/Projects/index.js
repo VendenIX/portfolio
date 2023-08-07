@@ -12,6 +12,9 @@ import img7 from '../../assets/project2/p3.png';
 import img8 from '../../assets/project2/p4.png';
 import img9 from '../../assets/project3/p1.png';
 import img10 from '../../assets/project3/p2.gif';
+import img11 from '../../assets/project4/p1.gif';
+import img12 from '../../assets/project4/p2.png';
+import img13 from '../../assets/project4/p4.png';
 import ProjectDetails from './components/ProjectDetails';
 
 const Projects = ({ onSelect }) => {
@@ -43,6 +46,15 @@ const Projects = ({ onSelect }) => {
             images: [img9,img10],
             video: 'https://www.youtube.com/embed/oQxr1ursKIU',
             githubLink: 'https://github.com/VendenIX/JeuInfection'
+        },
+        {
+            id: 4,
+            title: "Sorting Algorithms Visualizer",
+            description: "Welcome to the study project on sorting algorithms. This project involves the visualization and generation of CSV data for sorting algorithms in Python and C++. The project requires the installation of specific libraries (see make download_lib), and please note that you might encounter issues with make download_lib if your Linux version is not up to date.This project was accomplished with the assistance of the following contributors:Antoine (GitHub: https://github.com/aa2727)Guillaume (GitHub: https://github.com/P-Pix)Logan (GitHub: https://github.com/LoganVivien)The \"Data\" folder contains the data analysis portion of the project, while the \"App\" folder contains the source code for the sorting algorithm visualization application.How to launch a visualization?Navigate to the \"App\" directory and execute the following commands:make initmake download_lib (this will install the application's dependencies if they are not already installed on your machine)make allIf everything goes smoothly, you can now run:./Sorting_Algorithm HeapSortThis command will launch the application with the HeapSort sorting algorithm.How to view the analysis results?You can navigate to the \"Data\" directory and open the .pynb files using Jupyter Notebook. Each sorting algorithm has its analysis file, and the \"ComparatifInterAlgo.ipynb\" file provides a synthesis of the results. This file can also be used to generate a report that identifies the best sorting algorithm for various data scenarios.Each sorting algorithm has its Jupyter Notebook file. In these files, you will find pseudocode, graphical representations of the algorithm's efficiency on different data types, and a summary at the end of each file. The various data types include random data (using Fisher-Yates shuffling), data shuffled only at the beginning or at the end, and more.This project is implemented in C++, and the generated data is utilized in Python using libraries such as Pandas, NumPy, SciPy, and Matplotlib within Jupyter Notebook.",
+            technologies: ['C++', 'Python', 'Pandas', 'NumPy', 'SciPy', 'Matplotlib', 'Jupyter Notebook'],
+            images: [img11, img12, img13],
+            video: 'https://www.youtube.com/embed/HMKchM3o8Xk',
+            githubLink: 'https://github.com/VendenIX/analyse_tris'
         }
 
     ];
