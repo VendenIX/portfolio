@@ -1,5 +1,5 @@
-import React from 'react';
 import { Typography } from '@mui/material';
+import React from 'react';
 
 const AboutMe = () => {
     return (
@@ -31,6 +31,9 @@ const AboutMe = () => {
                 <li>Superintelligence - Nick Bostrom</li>
                 <li>Black Swan - Nassim Taleb</li>
                 <li>Bullshit Jobs - David Graeber</li>
+                <li>CERNA Ethics of Machine Learning Research</li>
+                <li>Medical informatics 3rd edition P. Degoulet M. Fieschi</li>
+                <li>Design Patterns for Java 2nd edition Laurent Debrauwer</li>
             </ul>
             <p>
                 In my daily work, I rely on Ubuntu with ZSH bash coupled with the Kitty terminal, which enables me to be efficient and effective in my coding endeavors.
