@@ -9,7 +9,6 @@ const BadgeCard = styled(Card)({
     height: '100%',
     overflow: 'hidden',
     borderRadius: '1em',
-    // Ajoutez d'autres styles personnalisés ici si nécessaire
     position: 'relative', // Ajout pour gérer le pseudo-élément :hover
     transition: 'box-shadow 0.3s', // Animation de la surbrillance
     '&:hover': {

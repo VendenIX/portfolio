@@ -22,16 +22,6 @@ const Skills = () => {
         "MongoDB",
         "MariaDB",
         "PostgreSQL",
-        // Add other database skills here
-    ];
-
-    const langagesSkills = [
-        "Python",
-        "Java",
-        "C",
-        "JavaScript",
-        "Bash",
-        // Add other language skills here
     ];
 
     const otherSkills = [

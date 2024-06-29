@@ -1,9 +1,8 @@
 import React, { useState } from 'react'; 
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import ListProjects from './components/list-projects';
 import { Box } from '@mui/system';
 import img1 from '../../assets/project1/p1.png';
-import img2 from '../../assets/project1/p2.png';
 import img3 from '../../assets/project1/p3.png';
 import img4 from '../../assets/project1/p4.png';
 import img5 from '../../assets/project2/p1.png';
@@ -17,7 +16,7 @@ import img12 from '../../assets/project4/p2.png';
 import img13 from '../../assets/project4/p4.png';
 import ProjectDetails from './components/ProjectDetails';
 
-const Projects = ({ onSelect }) => {
+const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const projects = [
         {

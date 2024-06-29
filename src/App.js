@@ -14,14 +14,12 @@ const theme = createTheme({
 });
 
 const App = () => {
-    const [selectedProject, setSelectedProject] = React.useState(null);
-
     return (
         <ThemeProvider theme={theme}>
             <div style={{ backgroundColor: '#38B3FF', color: '#fff' }}>
                 <Header />
                 <Home />
-                <Projects onSelect={setSelectedProject} />
+                <Projects />
                 <Skills />
                 <AboutMe />
                 <Contact />

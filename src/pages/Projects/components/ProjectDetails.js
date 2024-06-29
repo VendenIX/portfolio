@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Stack, Typography, Link, Button, IconButton } from '@mui/material';
-import ListImages from './list-images';
+import { Box, Stack, Typography, Button, IconButton } from '@mui/material';
 import Close from '@mui/icons-material/Close'; 
 
 const ProjectDetails = ({title, description, technologies, images, video, githubLink, onClose}) => {

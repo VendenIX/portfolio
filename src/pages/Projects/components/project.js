@@ -1,4 +1,3 @@
-// src/pages/projects/components/Project.js
 import React from 'react';
 import { Box, Stack } from '@mui/material';
 import ListImages from './list-images';
