@@ -15,19 +15,35 @@ const Header = () => {
             let currentSection = '#home';
             for (const section of sections) {
                 const element = document.querySelector(section);
-                if (element && element.getBoundingClientRect().top <= 0) {
-                    currentSection = section;
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 80 && rect.bottom >= 80) { 
+                        currentSection = section;
+                        break;
+                    }
                 }
             }
             setActiveSection(currentSection);
         };
-
+    
         window.addEventListener('scroll', handleScroll);
-
+    
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const scrollToSection = (id) => {
+        const section = document.querySelector(id);
+        const headerOffset = 10; 
+        const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerOffset;
+      
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      };
 
     const toggleDrawer = (isOpen) => {
         setDrawerOpen(isOpen);
@@ -35,11 +51,19 @@ const Header = () => {
 
     const renderMenuItems = (isInDrawer = false) => (
         sections.map((section, index) => (
-            <Button key={index} color="inherit" href={section} style={{ textDecoration: activeSection === section ? "underline" : "none", padding: isInDrawer ? '1em' : undefined }}>
-                {section.substring(1)}
-            </Button>
+          <Button 
+            key={index} 
+            color="inherit" 
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection(section);
+            }} 
+            style={{ textDecoration: activeSection === section ? "underline" : "none", padding: isInDrawer ? '1em' : undefined }}
+          >
+            {section.substring(1)}
+          </Button>
         ))
-    );
+      );
 
     return (
         <section id="home">
