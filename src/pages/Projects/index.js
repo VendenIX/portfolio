@@ -16,7 +16,7 @@ import img12 from '../../assets/project4/p2.png';
 import img13 from '../../assets/project4/p4.png';
 import ProjectDetails from './components/ProjectDetails';
 
-const Projects = () => {
+const Projects = ({onSelect}) => {
     const [selectedProject, setSelectedProject] = useState(null);
     const projects = [
         {
