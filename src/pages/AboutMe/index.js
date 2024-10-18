@@ -23,7 +23,7 @@ const AboutMe = () => {
             <p>
                 As part of my journey to broaden my horizons and collaborate with like-minded individuals, I will be participating in the Hackathon 2023 in Caen.
             </p>
-            <h2>I am currently studying in the university of Caen in Master's 1 Student in Artificial Intelligence, Data Analysis, Health Access</h2>
+            <h2>I am currently studying in the university of Caen in Master's 2 Student in Artificial Intelligence, Data Analysis, Health Access</h2>
             <h3>My readings related to computer science:</h3>
             <ul>
                 <li>Don't Make Me Think (Revisited) - Steve Krug</li>

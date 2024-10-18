@@ -2,8 +2,9 @@ import React from 'react';
 import { Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ProfileImage from '../../assets/p1.jpg';
 import '../../App.css';
+
+const IMAGE_BASE_URL = '/portfolio/images/';
 
 const Home = () => {
     const theme = useTheme();
@@ -34,9 +35,9 @@ const Home = () => {
             {/* PHOTO DE PROFIL*/}
             <Box sx={{ width: imageSize, height: imageSize, borderRadius: '50%', overflow: 'hidden', m: 2}}>
                 <img
-                    src={ProfileImage}
+                    src={`${IMAGE_BASE_URL}p1.jpg`}
                     alt="Profile"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', rotate: '3deg' }}
                 />
             </Box>
 

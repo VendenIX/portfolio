@@ -3,6 +3,8 @@ import { Card, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import ListImages from './list-images';
 
+const IMAGE_BASE_URL = '/portfolio/';
+
 const BadgeCard = styled(Card)({
     width: '45%', // Pour que la carte occupe toute la largeur du carrousel
     margin: 'auto',
@@ -22,7 +24,6 @@ const BadgeCard = styled(Card)({
       width: '90%'
     }
   });
-  
 
 const TitleWrapper = styled('div')({
   display: 'flex',
@@ -37,10 +38,13 @@ const ProjectBadge = ({ project, onSelect }) => {
     onSelect(project.id);
   };
 
+  // Construire les chemins complets des images
+  const imagePaths = project.images.map(img => `${IMAGE_BASE_URL}${img}`);
+
   return (
     <BadgeCard onClick={() => (onSelect ? onClickOnBadge() : null)}>
       <div>
-        <ListImages images={project.images}/>
+        <ListImages images={imagePaths} />
         <TitleWrapper>
           <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
             {project.title}
