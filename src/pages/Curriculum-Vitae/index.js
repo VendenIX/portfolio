@@ -3,60 +3,76 @@
 import DownloadIcon from '@mui/icons-material/Download';
 import { Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const CvViewer = () => {
-    const [src, setSrc] = useState("/Curriculum_vitae.pdf"); // load d'abord le PDF local
+  const [numPages, setNumPages] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
-        // try de charger le PDF distant après le rendu initial
-        const remoteSrc = "https://docs.google.com/viewer?url=https://raw.githubusercontent.com/VendenIX/curriculum_vitae/main/Curriculum_vitae.pdf&embedded=true";
+  useEffect(() => {
+    pdfjs.GlobalWorkerOptions.workerSrc = `${window.location.origin}/portfolio/pdf.worker.min.mjs`;
+  }, []);
 
-        // creer un test pour voir si le PDF distant est disponible
-        fetch("https://raw.githubusercontent.com/VendenIX/curriculum_vitae/main/Curriculum_vitae.pdf", { method: 'HEAD' })
-            .then((response) => {
-                if (response.ok) {
-                    // si le fichier distant est disponible, change la source
-                    setSrc(remoteSrc);
-                    console.log("Chargement du PDF distant ...");
-                }
-            })
-            .catch(() => {
-                // si une erreur survient, rester sur le PDF local
-                console.warn("Impossible de charger le PDF distant. Affichage de la version locale.");
-            });
-    }, []);
+  const filePath = `${window.location.origin}/portfolio/Curriculum_vitae.pdf`;
+  console.log("Chemin complet du fichier PDF :", filePath);
 
-    return (
-        <iframe
-            src={src}
-            style={{ width: '80%', height: '90vh', margin: 'auto', display: 'block', border: 'none' }}
-            title="CV"
-        />
-    );
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
+  // Cycle entre les pages toutes les 5 secondes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPage((prevPage) => (prevPage % 2) + 1);
+    }, 5000);
+
+    // Nettoyage de l'intervalle quand le composant se démonte
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: '60%', padding: '0 20%', marginBottom: '20vh' }}>
+        <Document
+          file={filePath}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <Page
+            pageNumber={currentPage}
+            width={window.innerWidth * 0.6} // Ajuste la largeur à 60% de la largeur totale
+          />
+        </Document>
+      </div>
+    </div>
+  );
 };
 
 const CurriculumVitae = () => {
-    return (
-        <section id="cv" style={{ padding: '5em', minHeight: '110vh' }}>
-            <div>
-                <Typography variant="h4" style={{ marginBottom: '1em' }}>Curriculum Vitae</Typography>
-                <CvViewer />
-            </div>
-            {/* Bouton pour Télécharger le CV */}
-            <Button
-                variant="contained"
-                color="primary"
-                startIcon={<DownloadIcon />}
-                href="https://raw.githubusercontent.com/VendenIX/curriculum_vitae/main/Curriculum_vitae.pdf"
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ margin: '1em 0' }}
-            >
-                Télécharger le CV
-            </Button>
-        </section>
-    );
+  const localDownloadPath = `${window.location.origin}/portfolio/Curriculum_vitae.pdf`;
+
+  return (
+    <section id="cv" style={{ padding: '5em', minHeight: '145vh' }}>
+      <div>
+        <Typography variant="h4" style={{ marginBottom: '1em' }}>Curriculum Vitae</Typography>
+              {/* Bouton pour Télécharger le CV */}
+      <Button
+        variant="contained"
+        color="primary"
+        startIcon={<DownloadIcon />}
+        href={localDownloadPath} // Chemin local pour le téléchargement
+        download
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ margin: '1em 0' }}
+      >
+        Télécharger le CV
+      </Button>
+        <CvViewer />
+      </div>
+    </section>
+  );
 };
 
 export default CurriculumVitae;
