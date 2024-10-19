@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-const CvViewer = ({ setPdfHeight }) => {
+const CvViewer = () => {
   const [numPages, setNumPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,13 +20,6 @@ const CvViewer = ({ setPdfHeight }) => {
     setNumPages(numPages);
   };
 
-  const onPageLoadSuccess = (page) => {
-    const { height } = page.getViewport({ scale: 1 });
-    console.log(`Hauteur de la page : ${height}px`);
-    // convertir la hauteur en `em`, en supposant que 1em = 16px
-    setPdfHeight(height / 16);
-  };
-
   // cycle entre les pages toutes les 5 secondes
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,18 +31,18 @@ const CvViewer = ({ setPdfHeight }) => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div style={{ width: '60%', padding: '0 20%', marginBottom: '20vh', paddingRight: '25em' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2em'}}>
+      <div style={{ height: '160vh', width: '60%', padding: '0 20%', overflow: 'hidden', margin: '0 auto', transform: 'translateX(-5%)'}}>
         <Document
           file={filePath}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page
             pageNumber={currentPage}
-            width={window.innerWidth * 0.6} // largeur à 60% de la largeur totale
-            onLoadSuccess={onPageLoadSuccess} 
+            height={window.innerHeight} 
+            width={window.innerWidth * 0.6} // 60% de la largeur totale de l'écran
           />
-        </Document>
+        </Document> 
       </div>
     </div>
   );
@@ -57,13 +50,12 @@ const CvViewer = ({ setPdfHeight }) => {
 
 const CurriculumVitae = () => {
   const localDownloadPath = `${window.location.origin}/portfolio/Curriculum_vitae.pdf`;
-  const [pdfHeightEm, setPdfHeightEm] = useState(0);
 
   return (
-    <section id="cv" style={{ padding: '5em', minHeight: `${pdfHeightEm * 1.50}em` }}>
+    <section id="cv" style={{ padding: '6em', minHeight: '110vh' }}>
       <div>
-        <Typography variant="h4" style={{ marginBottom: '1em' }}>Curriculum Vitae</Typography>
-              {/* bouton pour Télécharger le CV */}
+        <Typography variant="h4" style={{marginTop: '2em'}}>Curriculum Vitae</Typography>
+        {/* bouton pour Télécharger le CV */}
         <Button
           variant="contained"
           color="primary"
@@ -76,7 +68,7 @@ const CurriculumVitae = () => {
         >
           Télécharger le CV
         </Button>
-        <CvViewer setPdfHeight={setPdfHeightEm} />
+        <CvViewer />
       </div>
     </section>
   );
