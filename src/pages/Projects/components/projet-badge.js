@@ -51,7 +51,7 @@ const ProjectBadge = ({ project, onSelect }) => {
           </Typography>
         </TitleWrapper>
       </div>
-      <Typography variant="body1" component="div" sx={{ textAlign: 'center', marginTop: '8px' }}>
+      <Typography variant="body1" component="div" sx={{ textAlign: 'center', marginTop: '8px'  }}>
       </Typography>
     </BadgeCard>
   );

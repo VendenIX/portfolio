@@ -14,7 +14,7 @@ const ListImages = ({ images }) => {
             >
                 {images.map((image, index) => (
                     <Box key={index} display='flex' justifyContent='center'>
-                        <img src={image} alt={`Project ${index}`} style={{ width: "auto", height: "25em" }} />
+                        <img src={image} alt={`Project ${index}`} style={{ width: "100%", height: "25em" }} />
                     </Box>
                 ))}
             </Carousel>
