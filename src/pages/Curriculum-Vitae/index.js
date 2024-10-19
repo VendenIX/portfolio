@@ -66,7 +66,7 @@ const CurriculumVitae = () => {
           rel="noopener noreferrer"
           style={{ margin: '1em 0' }}
         >
-          Télécharger le CV
+          Download CV
         </Button>
         <CvViewer />
       </div>
