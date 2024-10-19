@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Button, Box, IconButton, Drawer, List, ListItem, useTheme, useMediaQuery } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+// src/pages/Header/Header.js
 
-const sections = ['#home', '#projects', '#skills','#aboutMe', '#contact'];
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Button, Drawer, IconButton, List, ListItem, Toolbar, useMediaQuery, useTheme } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+// Ajouter la section CV
+const sections = ['#home', '#projects', '#cv', '#skills', '#aboutMe', '#contact'];
 
 const Header = () => {
     const [activeSection, setActiveSection] = useState('#home');
@@ -17,7 +20,7 @@ const Header = () => {
                 const element = document.querySelector(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
-                    if (rect.top <= 80 && rect.bottom >= 80) { 
+                    if (rect.top <= 80 && rect.bottom >= 80) {
                         currentSection = section;
                         break;
                     }
@@ -25,9 +28,9 @@ const Header = () => {
             }
             setActiveSection(currentSection);
         };
-    
+
         window.addEventListener('scroll', handleScroll);
-    
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -35,46 +38,50 @@ const Header = () => {
 
     const scrollToSection = (id) => {
         const section = document.querySelector(id);
-        const headerOffset = 10; 
+        const headerOffset = 10;
         const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - headerOffset;
-      
+
         window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+            top: offsetPosition,
+            behavior: 'smooth',
         });
-      };
+    };
 
     const toggleDrawer = (isOpen) => {
         setDrawerOpen(isOpen);
     };
 
-    const renderMenuItems = (isInDrawer = false) => (
+    const renderMenuItems = (isInDrawer = false) =>
         sections.map((section, index) => (
-          <Button 
-            key={index} 
-            color="inherit" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(section);
-            }} 
-            style={{ textDecoration: activeSection === section ? "underline" : "none", padding: isInDrawer ? '1em' : undefined }}
-          >
-            {section.substring(1)}
-          </Button>
-        ))
-      );
+            <Button
+                key={index}
+                color="inherit"
+                onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section);
+                }}
+                style={{
+                    textDecoration: activeSection === section ? 'underline' : 'none',
+                    padding: isInDrawer ? '1em' : undefined,
+                }}
+            >
+                {section.substring(1).toUpperCase()} {/* Transformer en majuscules */}
+            </Button>
+        ));
 
     return (
         <section id="home">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' , marginBottom: '4em'}}>
-                <AppBar position="fixed" color="primary" sx={{ maxWidth: '100%', background: '#38B3FF', paddingRight: '10em'}}>
-                    <Toolbar sx={{ justifyContent: 'flex-end'}}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '4em' }}>
+                <AppBar position="fixed" color="primary" sx={{ maxWidth: '100%', background: '#38B3FF', paddingRight: '10em' }}>
+                    <Toolbar sx={{ justifyContent: 'flex-end' }}>
                         {isMobile ? (
-                            <IconButton sx={{marginRight: '-6em'}}color="inherit" onClick={() => toggleDrawer(true)}>
+                            <IconButton sx={{ marginRight: '-6em' }} color="inherit" onClick={() => toggleDrawer(true)}>
                                 <MenuIcon />
                             </IconButton>
-                        ) : renderMenuItems()}
+                        ) : (
+                            renderMenuItems()
+                        )}
                     </Toolbar>
                 </AppBar>
                 <Drawer anchor="right" open={drawerOpen} onClose={() => toggleDrawer(false)}>
