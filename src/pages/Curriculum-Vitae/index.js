@@ -52,9 +52,9 @@ const CurriculumVitae = () => {
   const localDownloadPath = `${window.location.origin}/portfolio/Curriculum_vitae.pdf`;
 
   return (
-    <section id="cv" style={{ padding: '6em', minHeight: '110vh' }}>
+    <section id="cv" style={{padding: '6em', minHeight: '110vh'}}>
       <div>
-        <Typography variant="h4" style={{marginTop: '2em'}}>Curriculum Vitae</Typography>
+        <Typography variant="h4" style={{marginTop: '-0.5em'}}>Curriculum Vitae</Typography>
         {/* bouton pour Télécharger le CV */}
         <Button
           variant="contained"

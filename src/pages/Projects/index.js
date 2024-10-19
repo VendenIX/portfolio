@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'; 
-import { Typography, Button } from '@mui/material';
-import ListProjects from './components/list-projects';
+import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import ProjectDetails from './components/ProjectDetails';
+import React, { useState } from 'react';
 import projectsData from '../../assets/projects.json';
+import ListProjects from './components/list-projects';
+import ProjectDetails from './components/ProjectDetails';
 
 // Définir la base URL pour les images
 const IMAGE_BASE_URL = '/portfolio/';
@@ -25,7 +25,7 @@ const Projects = ({ onSelect }) => {
     };
 
     return (
-        <section id="projects" style={{ minHeight: '110vh' }}>
+        <section id="projects" style={{ minHeight: '110vh'}}>
             {selectedProject ? (
                 <ProjectDetails 
                     title={selectedProject.title}
