@@ -1,10 +1,7 @@
-// src/pages/Header/Header.js
-
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, Drawer, IconButton, List, ListItem, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-// Ajouter la section CV
 const sections = ['#home', '#projects', '#cv', '#skills', '#aboutMe', '#contact'];
 
 const Header = () => {
@@ -63,7 +60,9 @@ const Header = () => {
                 }}
                 style={{
                     textDecoration: activeSection === section ? 'underline' : 'none',
-                    padding: isInDrawer ? '1em' : undefined,
+                    padding: isInDrawer ? '1em' : '0.5em 1em', // ajustement pour une meilleure uniformité
+                    marginRight: isInDrawer ? undefined : '1em', // espacement régulier entre les boutons
+                    fontWeight: activeSection === section ? 'bold' : 'normal', // accentuer la section active
                 }}
             >
                 {section.substring(1).toUpperCase()} {/* Transformer en majuscules */}
@@ -80,7 +79,9 @@ const Header = () => {
                                 <MenuIcon />
                             </IconButton>
                         ) : (
-                            renderMenuItems()
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {renderMenuItems()}
+                            </Box>
                         )}
                     </Toolbar>
                 </AppBar>
