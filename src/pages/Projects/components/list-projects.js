@@ -1,41 +1,51 @@
 import { Box, Grid } from '@mui/material';
 import React, { useRef, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import './ListProjects.css'; // fichier CSS pour gérer la transition
 import ProjectDetails from './ProjectDetails';
 import ProjectBadge from './projet-badge';
 
 const ListProjects = ({ projects }) => {
     const [selectedProject, setSelectedProject] = useState(null);
+    const [showDetails, setShowDetails] = useState(false);
     const projectDetailsRef = useRef(null);
-    const projectsTopRef = useRef(null); // Référence au début de la section projets
+    const projectsTopRef = useRef(null); // ref au début de la section projets
 
     const handleSelectProject = (projectId) => {
-        // Trouver le projet sélectionné par son ID
+        // find le projet sélectionné par son ID
         const project = projects.find(p => p.id === projectId);
         setSelectedProject(project);
+        setShowDetails(true);
 
-        // Scroller jusqu'à la section des détails du projet, ajusté 10% moins bas
+        // scroll jusqu'à la section des détails du projet, ajusté 10% moins bas
         setTimeout(() => {
-            const detailsPosition = (projectDetailsRef.current?.offsetTop || 0) + (window.innerHeight * -0.1); // Défilement 10% moins bas
+            const detailsPosition = (projectDetailsRef.current?.offsetTop || 0) - (window.innerHeight * 0.1);
             window.scrollTo({ top: detailsPosition, behavior: 'smooth' });
         }, 100);
     };
 
     const handleCloseDetails = () => {
-        setSelectedProject(null);
+        // masquer les détails avec une transition avant de scroller vers le haut
+        setShowDetails(false);
 
-        // Utiliser window.scrollTo pour revenir en haut de la liste des projets
+        // use un délai pour laisser le temps à la transition de se terminer
         setTimeout(() => {
-            const topPosition = (projectsTopRef.current?.offsetTop || 0) - (window.innerHeight * 0.1); // Défilement 10% plus haut
-            window.scrollTo({ top: topPosition, behavior: 'smooth' });
-        }, 100);
+            setSelectedProject(null);
+
+            // Scroller vers le haut de la liste des projets
+            setTimeout(() => {
+                const topPosition = (projectsTopRef.current?.offsetTop || 0) - (window.innerHeight * 0.1);
+                window.scrollTo({ top: topPosition, behavior: 'smooth' });
+            }, 100);
+        }, 300); // Laisser 300ms pour la transition fade out
     };
 
     return (
         <div>
-            {/* Référence au début de la section des projets */}
+            {/* référence au début de la section des projets */}
             <div ref={projectsTopRef}></div>
 
-            {/* Section pour les cartes de projet */}
+            {/* section pour les cartes de projet */}
             <Grid container spacing={10} justifyContent="space-between">
                 {projects.map((project, index) => (
                     <Grid item xs={12} md={6} key={index}>
@@ -44,19 +54,26 @@ const ListProjects = ({ projects }) => {
                 ))}
             </Grid>
 
-            {/* Section pour les détails du projet sélectionné */}
+            {/* section pour les détails du projet sélectionné avec transition */}
             {selectedProject && (
-                <Box ref={projectDetailsRef} sx={{ marginTop: '2em' }}>
-                    <ProjectDetails
-                        title={selectedProject.title}
-                        description={selectedProject.description}
-                        technologies={selectedProject.technologies}
-                        images={selectedProject.images}
-                        video={selectedProject.video}
-                        githubLink={selectedProject.githubLink}
-                        onClose={handleCloseDetails}
-                    />
-                </Box>
+                <CSSTransition
+                    in={showDetails}
+                    timeout={300}
+                    classNames="fade"
+                    unmountOnExit
+                >
+                    <Box ref={projectDetailsRef} sx={{ marginTop: '2em' }}>
+                        <ProjectDetails
+                            title={selectedProject.title}
+                            description={selectedProject.description}
+                            technologies={selectedProject.technologies}
+                            images={selectedProject.images}
+                            video={selectedProject.video}
+                            githubLink={selectedProject.githubLink}
+                            onClose={handleCloseDetails}
+                        />
+                    </Box>
+                </CSSTransition>
             )}
         </div>
     );
