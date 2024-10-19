@@ -5,7 +5,7 @@ import Close from '@mui/icons-material/Close';
 const ProjectDetails = ({title, description, technologies, images, video, githubLink, onClose}) => {
 
     return (
-        <Box sx={{ backgroundColor: "#f0f0f0", padding: "2em", borderRadius: "2em", margin: "1em 0", maxWidth: '100%', maxHeight: '100%' }}>
+        <Box sx={{ backgroundColor: "#f0f0f0", padding: "2em", borderRadius: "2em", margin: "1em 10%", maxWidth: '100%', maxHeight: '100%' }}>
              <IconButton onClick={onClose}>
                 <Close />
             </IconButton>

@@ -1,12 +1,12 @@
-import React from 'react';
 import { Card, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import React from 'react';
 import ListImages from './list-images';
 
 const IMAGE_BASE_URL = '/portfolio/';
 
 const BadgeCard = styled(Card)({
-    width: '45%', // Pour que la carte occupe toute la largeur du carrousel
+    width: '80%', // Pour que la carte occupe toute la largeur du carrousel
     margin: 'auto',
     height: '100%',
     overflow: 'hidden',
