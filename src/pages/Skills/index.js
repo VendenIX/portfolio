@@ -9,19 +9,33 @@ const Skills = () => {
         "Responsive Design",
         "Cypress",
         "Jest",
+        "Tailwind CSS",
     ];
 
     const backendSkills = [
         "Node.js",
         "GraphQL",
+        "Flask API CRUD",
+        "Fix the CORS Policy 😎 !"
     ];
 
     const databaseSkills = [
-        "SQL",
         "MySQL",
         "MongoDB",
         "MariaDB",
         "PostgreSQL",
+        "Talend",
+        "Weka"
+    ];
+
+    const machineLearningSkills = [
+        "Data Preprocessing",
+        "Data Cleaning",
+        "Data Visualization",
+        "Feature Engineering",
+        "Model Selection",
+        "Model Evaluation",
+        "Model Deployment",
     ];
 
     const otherSkills = [
@@ -54,6 +68,7 @@ const Skills = () => {
                 <SkillSection title="Front-end" skills={frontendSkills} />
                 <SkillSection title="Back-end" skills={backendSkills} />
                 <SkillSection title="Database Skills" skills={databaseSkills} />
+                <SkillSection title="Machine Learning" skills={machineLearningSkills} />
                 <SkillSection title="Other Skills" skills={otherSkills}/>
             </div>
         </section>
