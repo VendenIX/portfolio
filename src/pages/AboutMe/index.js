@@ -9,7 +9,7 @@ const AboutMe = () => {
             </div>
             <h1>A brief introduction:</h1>
             <p>
-                I am a passionate individual, always seeking opportunities for learning and growth. As an aspiring Master's 1 student in Artificial Intelligence, Data Analysis, and Health Access, I am committed to pushing the boundaries of knowledge and contributing to the advancement of technology and society.
+                I am a passionate individual, always seeking opportunities for learning and growth. As an aspiring Master's 2 student in Artificial Intelligence, Data Analysis, and Health Access, I am committed to pushing the boundaries of knowledge and contributing to the advancement of technology and society.
             </p>
             <p>
                 Never settling for mediocrity, I thrive on challenges and constantly challenge myself to think creatively and critically. My tenacity and autonomy drive me to seek out new skills and knowledge through self-learning and online tutorials.
