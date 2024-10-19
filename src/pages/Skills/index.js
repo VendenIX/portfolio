@@ -16,6 +16,8 @@ const Skills = () => {
         "Node.js",
         "GraphQL",
         "Flask API CRUD",
+        "Do a proxy enginx",
+        "Full config of a NAS server FreeBSD encrypted",
         "Fix the CORS Policy 😎 !"
     ];
 
