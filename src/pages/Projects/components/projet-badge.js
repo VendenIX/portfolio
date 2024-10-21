@@ -6,16 +6,16 @@ import ListImages from './list-images';
 const IMAGE_BASE_URL = '/portfolio/';
 
 const BadgeCard = styled(Card)({
-    width: '80%', // Pour que la carte occupe toute la largeur du carrousel
+    width: '80%',
     margin: 'auto',
     height: '100%',
     overflow: 'hidden',
     borderRadius: '1em',
-    position: 'relative', // Ajout pour gérer le pseudo-élément :hover
-    transition: 'box-shadow 0.3s', // Animation de la surbrillance
+    position: 'relative', 
+    transition: 'box-shadow 0.3s', 
     '&:hover': {
-      cursor: 'pointer', // Curseur de la souris en main pointer au survol
-      boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)', // Surbrillance de l'ombre au survol
+      cursor: 'pointer',
+      boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
     },
     '@media (max-width:800px)': {
       width: '80%', 
@@ -23,7 +23,7 @@ const BadgeCard = styled(Card)({
     '@media (max-width:400px)': {
       width: '90%'
     }
-  });
+});
 
 const TitleWrapper = styled('div')({
   display: 'flex',
@@ -33,25 +33,38 @@ const TitleWrapper = styled('div')({
   height: '100%',
 });
 
+const ImageWrapper = styled('div')({
+  width: '100%',
+  height: '23em',
+  overflow: 'hidden',
+  '& img': {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center',
+  }
+});
+
 const ProjectBadge = ({ project, onSelect }) => {
   const onClickOnBadge = () => {
     onSelect(project.id);
   };
 
-  // Construire les chemins complets des images
   const imagePaths = project.images.map(img => `${IMAGE_BASE_URL}${img}`);
 
   return (
     <BadgeCard onClick={() => (onSelect ? onClickOnBadge() : null)}>
       <div>
-        <ListImages images={imagePaths} />
+        <ImageWrapper>
+          <ListImages images={imagePaths} />
+        </ImageWrapper>
         <TitleWrapper>
           <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'center' }}>
             {project.title}
           </Typography>
         </TitleWrapper>
       </div>
-      <Typography variant="body1" component="div" sx={{ textAlign: 'center', marginTop: '8px'  }}>
+      <Typography variant="body1" component="div" sx={{ textAlign: 'center', marginTop: '8px' }}>
       </Typography>
     </BadgeCard>
   );
