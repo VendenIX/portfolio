@@ -2,7 +2,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, Drawer, IconButton, List, ListItem, Toolbar, useMediaQuery, useTheme } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-const sections = ['#home', '#projects', '#cv', '#skills', '#aboutMe', '#contact'];
+const sections = ['#home', '#projects', '#cv', '#skills', '#aboutMe', '#publications','#contact'];
 
 const Header = () => {
     const [activeSection, setActiveSection] = useState('#home');

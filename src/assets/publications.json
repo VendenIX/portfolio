@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "title": "Development and routine implementation of deep learning algorithm for automatic brain metastases segmentation on MRI for RANO-BM criteria follow-up",
+    "abstract": "This study develops an AI solution that rapidly and accurately segments brain metastases on MRI, providing RANO-BM criteria and volume measurements for efficient clinical evaluation.",
+    "doi": "https://doi.org/10.1016/j.neuroimage.2025.121002",
+    "articleUrl": "https://www.sciencedirect.com/science/article/pii/S1053811925000023",
+    "image": "images/project1/screenPicture.gif"
+  }
+]

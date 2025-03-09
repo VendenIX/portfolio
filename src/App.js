@@ -2,11 +2,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import AboutMe from './pages/AboutMe/';
 import Contact from './pages/Contact/';
+import CurriculumVitae from './pages/Curriculum-Vitae';
 import Header from './pages/Header/';
 import Home from './pages/Home/';
 import Projects from './pages/Projects/';
+import Publications from './pages/Publications';
 import Skills from './pages/Skills';
-import CurriculumVitae from './pages/Curriculum-Vitae';
 
 const theme = createTheme({
   typography: {
@@ -25,6 +26,7 @@ const App = () => {
                 <CurriculumVitae />
                 <Skills />
                 <AboutMe />
+                <Publications />
                 <Contact />
             </div>
         </ThemeProvider>
