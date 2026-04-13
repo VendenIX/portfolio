@@ -22,13 +22,14 @@ const CvViewer = () => {
 
   // cycle entre les pages toutes les 5 secondes
   useEffect(() => {
+    if (!numPages) return;
     const interval = setInterval(() => {
-      setCurrentPage((prevPage) => (prevPage % 2) + 1);
+      setCurrentPage((prevPage) => (prevPage % numPages) + 1);
     }, 5000);
 
     // nettoyage de l'intervalle quand le composant se démonte
     return () => clearInterval(interval);
-  }, []);
+  }, [numPages]);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2em'}}>

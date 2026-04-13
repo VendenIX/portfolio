@@ -1,5 +1,14 @@
 [
     {
+        "id": 6,
+        "title": "Explainability and Clinical Trust of Deep Learning in Glioblastoma Treatment Efficacy Prediction",
+        "description": "First-author manuscript (under review, 2025-2026) presenting a multi-layered XAI pipeline — combining Grad-CAM, LRP, LIME, linear probing, and causal activation patching — to audit a ResNet-51q model predicting glioblastoma treatment response.\n\nThe study uncovers that the model relies on an unexpected heuristic based on a proxy of the surgical resection status, anchoring its long- versus short-survival predictions on the detection of the surgical site rather than on tumoral features. This finding was confirmed through targeted ablation studies and high-resolution saliency maps, and the overall framework was validated in a multi-reader, multi-case clinical study.\n\nAuthors: Andres, R., Moreau, N., Dessoude, L., Le Henaff, L., Missohou, F., Stefan, D., Desmonts, A., Herault, R., & Corroyer-Dulmont, A.",
+        "technologies": ["Python", "PyTorch", "Grad-CAM", "LRP", "LIME", "Linear Probing", "Causal Activation Patching", "XAI", "Deep Learning"],
+        "images": ["images/project6/saliency_evolution_simple_true_positive.gif"],
+        "video": "",
+        "githubLink": "https://github.com/VendenIX/GBM-Treatment-Response-XAI"
+    },
+    {
         "id": 1,
         "title": "MetIA (OHIF Extension for UNETR Segmentation)",
         "description": "This project aims to create an API to utilize a deep learning algorithm specifically designed for the automatic segmentation of brain lesions on MRI images. In the context of cancer treatment via radiotherapy, healthcare professionals are required to manually outline the areas to be treated, a tedious and time-consuming task. A deep learning algorithm developed during a Master's internship at IDM Caen offers the possibility to perform this delineation automatically.\n\nI completed the deployment and finalization of the interface at the François Baclesse Center during an internship (27/05/2024 - 05/07/2024). Under the supervision of Dr. Corroyer-Dulmont, Head of AI and Medical Imaging Engineer at CFB, I contributed to the continuation of my annual Master 1 project to create a visualization interface and API that integrates this deep learning algorithm. My tasks included:\n\n- Deployment, finalization, and optimization of the interface based on OHIF Viewer and its API on the Windows environments of the center, involving ML Ops tasks (deployment of a deep learning solution)\n- Optimization of the deep learning model to reduce computational costs\n- Retraining the deep learning model on a new dataset\n\nSkills strengthened:\n\n- Analysis and manipulation of medical data in DICOM and NIFTII formats (MRI, CT-Scans)\n- R&D, autonomous problem-solving\n- Critical thinking\n- Understanding of deep learning models with complex neural architecture (UNET-R)\n- Multi-OS adaptation for deployment",
