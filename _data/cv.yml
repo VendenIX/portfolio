@@ -1,0 +1,126 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Romain Andres
+    - name: Location
+      value: Caen, Normandy, France
+    - name: Languages
+      value: French (native), English (B2, CLES B1 certification)
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Master's degree in AI and Data Analysis, focus on Healthcare
+      institution: University of Caen
+      year: 2023 - 2025
+      description:
+        - Part of the SATIN project (Health, Territory, Innovation and Digital Technology).
+    - title: Bachelor's degree in Computer Science
+      institution: University of Caen
+      year: 2023
+    - title: First Aid Certificate (PSC1 — Prevention and Civic Rescue, Level 1)
+      institution: University of Caen
+      year: Feb 2024
+      description:
+        - First aid training providing the skills required to respond in the event of a medical emergency.
+    - title: French Baccalauréat, Economics and Social Sciences stream
+      institution: Lycée Fresnel, Caen
+      year: 2019
+
+- title: Experience
+  type: time_table
+  contents:
+    - title: AI Engineer — Federated Learning for Medical Imaging
+      institution: Centre François Baclesse, Caen
+      year: Sep 2025 - Jun 2026
+      description:
+        - Fixed-term contract contributing to a national federated learning project advancing personalized medicine through improved survival prediction for glioblastoma patients, building on prior Master's work in explainable AI.
+        - Collaborated with a multi-institutional team from Inria and several French cancer centers to design and implement technical solutions.
+        - Trained a deep learning model on distributed data using the Fed-BioMed framework, ensuring patient data privacy throughout.
+        - Managed the project's data pipeline, including standardization and anonymization of multi-center datasets.
+        - Addressed complex architectural challenges inherent to federated learning environments.
+    - title: Research and Development Intern, Explainability
+      institution: Centre François Baclesse, Caen
+      year: Mar 2025 - Aug 2025
+      description:
+        - Explored and applied explainability techniques (Grad-CAM, LIME, LRP) to understand the predictions of a ResNet-51q model for glioblastoma treatment response.
+        - Ran statistical analysis and validation against clinical data to ensure the relevance and robustness of the generated explanations.
+        - Compared explainability methods and identified the model's limitations across patient cases.
+        - Wrote and submitted a scientific article presenting the research outcomes to a peer-reviewed venue.
+        - title: Skills strengthened
+          contents:
+            - Deep learning & explainability (ResNet, Grad-CAM, LIME, LRP)
+            - Medical image analysis (MRI, segmentation, feature extraction)
+            - Statistics and validation of AI models applied to healthcare
+            - Scientific writing and the publication process
+    - title: Research and Development Intern, Medical AI
+      institution: Centre François Baclesse, Caen
+      year: May 2024 - Jul 2024
+      description:
+        - Continuation of a Master's project creating a visualization interface and API for a deep learning algorithm for automatic brain lesion segmentation on MRI, under the supervision of Dr. Corroyer-Dulmont (Head of AI and Medical Imaging Engineer at CFB).
+        - Deployed, finalized, and optimized an interface based on OHIF Viewer and its API on the center's Windows environments (ML Ops).
+        - Optimized and retrained the deep learning model on a new dataset to reduce computational cost.
+        - title: Outcome
+          contents:
+            - Co-first author, "Development and routine implementation of a deep learning algorithm for automatic brain metastases segmentation on MRI for RANO-BM criteria follow-up", NeuroImage, Vol. 306 (2025).
+      linkitems:
+        - link: https://doi.org/10.1016/j.neuroimage.2025.121002
+          linkname: paper
+    - title: Front-end Web Developer
+      institution: Atlas Music, Assas Lab Incubator, Paris
+      year: Jun 2023 - Jul 2023
+      description:
+        - Implemented Cypress E2E tests and front-end development with React, GraphQL, and MongoDB, with a focus on responsive design.
+
+- title: Publications
+  type: time_table
+  contents:
+    - title: Development and routine implementation of a deep learning algorithm for automatic brain metastases segmentation on MRI for RANO-BM criteria follow-up
+      institution: NeuroImage, Volume 306 (2025) — co-first author
+      year: 2025
+      linkitems:
+        - link: https://doi.org/10.1016/j.neuroimage.2025.121002
+          linkname: paper
+    - title: "Explainability and Clinical Trust of Deep Learning in Glioblastoma Treatment Efficacy Prediction: A Comprehensive Framework"
+      institution: Manuscript under review — first author
+      year: 2025
+      linkitems:
+        - link: https://github.com/VendenIX/GBM-Treatment-Response-XAI
+          linkname: code
+
+- title: Skills
+  type: nested_list
+  contents:
+    - title: Deep Learning & Computer Vision
+      items:
+        - PyTorch, TensorBoard
+        - Convolutional neural networks (ResNet, UNet, UNet-R)
+        - Explainable AI — Grad-CAM, LIME, LRP, linear probing, causal activation patching
+    - title: Medical Imaging
+      items:
+        - DICOM, NIfTI, HDF5 (H5) formats
+        - Image preprocessing, segmentation, feature extraction on MRI / CT-scan data
+        - Federated learning for medical data (Fed-BioMed)
+    - title: Data Analysis & Machine Learning
+      items:
+        - "Python: NumPy, SciPy, scikit-learn, pandas — plus R"
+        - Statistical testing, model evaluation, robustness analysis
+        - Supervised, unsupervised and reinforcement learning, SVMs, dimensionality reduction
+        - Data mining and ETL pipelines (KNIME, Weka, Talend)
+    - title: Databases
+      items:
+        - PostgreSQL, MongoDB, Cassandra, MySQL, MariaDB
+        - GraphQL
+    - title: Development & Systems
+      items:
+        - Git, Linux, Bash, Docker, Kubernetes
+        - React / Flask for research prototyping and medical imaging interfaces
+        - Self-hosted FreeBSD NAS/cloud server administration
+
+- title: Additional Knowledge
+  type: list
+  contents:
+    - Research methodology — literature review, academic writing (LaTeX), reference management (Zotero), reproducible experimentation, peer-reviewed publication process.
+    - Scientific communication — peer-reviewed publication (co-first author, NeuroImage), poster presentations, public speaking, conference hosting.
+    - Biomedical knowledge — telemedicine, physiology, neurology, genetics, ECG analysis, pharmacology (SMILES/SMARTS notation, molecular graph representations).

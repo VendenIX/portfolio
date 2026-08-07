@@ -1,0 +1,407 @@
+/*******************************************************************************
+ * Style overrides for distill blog posts.
+ ******************************************************************************/
+
+d-byline {
+  border-top-color: var(--global-divider-color) !important;
+}
+
+d-byline h3 {
+  color: var(--global-text-color) !important;
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--global-text-color) !important;
+  &:hover {
+    color: var(--global-hover-color) !important;
+  }
+}
+
+d-article {
+  border-top-color: var(--global-divider-color) !important;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  table {
+    color: var(--global-text-color) !important;
+  }
+  h1,
+  h2,
+  hr,
+  table,
+  table th,
+  table td {
+    border-bottom-color: var(--global-divider-color) !important;
+  }
+  a {
+    color: var(--global-theme-color) !important;
+    &:hover {
+      color: var(--global-theme-color) !important;
+    }
+  }
+  b i {
+    display: inline;
+  }
+  blockquote {
+    border-left: 2px solid var(--global-theme-color) !important;
+  }
+
+  // Style taken from code blocks
+  details {
+    color: var(--global-text-color);
+    background-color: var(--global-code-bg-color);
+    margin-top: 0;
+    padding: 8px 12px;
+    position: relative;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 20px;
+    grid-column: text;
+    overflow: auto;
+    max-width: 100%;
+    summary {
+      color: var(--global-theme-color);
+    }
+    p {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    // d-math,
+    // d-math * {
+	    // color: var(--global-text-color) !important;
+    // }
+  }
+
+  d-contents {
+    align-self: start;
+    grid-column: 1 / 4;
+    grid-row: auto / span 4;
+    justify-self: end;
+    margin-top: 0em;
+    padding-left: 2em;
+    padding-right: 3em;
+    border-right: 1px solid var(--global-divider-color);
+    width: calc(max(70%, 300px));
+    margin-right: 0px;
+    margin-top: 0em;
+    display: grid;
+    grid-template-columns:
+      minmax(8px, 1fr) [toc] auto
+      minmax(8px, 1fr) [toc-line] 1px
+      minmax(32px, 2fr);
+
+    nav {
+      grid-column: toc;
+      a {
+        border-bottom: none !important;
+        &:hover {
+          border-bottom: 1px solid var(--global-text-color) !important;
+        }
+      }
+      h3 {
+        margin-top: 0;
+        margin-bottom: 1em;
+      }
+      div {
+        display: block;
+        outline: none;
+        margin-bottom: 0.8em;
+        color: rgba(0, 0, 0, 0.8);
+        font-weight: bold;
+      }
+      ul {
+        padding-left: 1em;
+        margin-top: 0;
+        margin-bottom: 6px;
+        list-style-type: none;
+        li {
+          margin-bottom: 0.25em;
+        }
+      }
+    }
+    .figcaption {
+      color: var(--global-text-color) !important;
+      line-height: 1.4em;
+    }
+    toc-line {
+      border-right: 1px solid var(--global-divider-color);
+      grid-column: toc-line;
+    }
+  }
+
+  d-footnote {
+    scroll-margin-top: 66px;
+  }
+}
+
+d-appendix {
+  border-top-color: var(--global-divider-color) !important;
+  color: var(--global-distill-app-color) !important;
+  h3,
+  li,
+  span {
+    color: var(--global-distill-app-color) !important;
+  }
+  a,
+  a.footnote-backlink {
+    color: var(--global-distill-app-color) !important;
+    &:hover {
+      color: var(--global-hover-color) !important;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  d-article {
+    d-contents {
+      display: block;
+      grid-column-start: 2;
+      grid-column-end: -2;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+      padding-top: 0.5em;
+      width: 100%;
+      border: 1px solid var(--global-divider-color);
+      nav {
+        grid-column: none;
+      }
+    }
+  }
+}
+
+/*******************************************************************************
+ * Tippy tooltip styles for glossary terms
+ ******************************************************************************/
+ .tippy-box[data-theme~='custom'] {
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+  border: 1px solid var(--global-divider-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tippy-box[data-theme~='custom'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: var(--global-bg-color);
+}
+.tippy-box[data-theme~='custom'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: var(--global-bg-color);
+}
+.tippy-box[data-theme~='custom'][data-placement^='left'] > .tippy-arrow::before {
+  border-left-color: var(--global-bg-color);
+}
+.tippy-box[data-theme~='custom'][data-placement^='right'] > .tippy-arrow::before {
+  border-right-color: var(--global-bg-color);
+}
+
+// Style for the glossary term
+.glossary-term {
+  border-bottom: 1px dotted var(--global-text-color);
+  cursor: help;
+}
+
+// Style for the definition box 
+body .definition-box {
+  // background-color: #e6f3f0; /* Light turquoise background */
+  // border: 2px solid #40a090; /* Turquoise border */ 
+  background-color: var(--definition-bg);
+  border: 2px solid var(--definition-border);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+body .definition-title {
+  color: var(--definition-title-text) !important;
+  background-color: var(--definition-title-bg); 
+  padding: 5px 10px;
+  margin: -10px -10px 10px -10px; /* Negative margin to extend to edges */
+  border-radius: 6px 6px 0 0;
+  font-weight: bold;
+}
+
+body .definition-content {
+  margin: 0;
+  padding: 0 5px;
+  color: var(--definition-text) !important; 
+  //color for <d-math> tags
+  d-math,
+  d-math * {
+    color: var(--definition-text) !important;
+  }
+  .d-cite {
+    color: var(--global-text-color) !important;
+  }
+  .glossary-term {
+    color: var(--explanation-text) !important;
+    border-bottom: 1px dotted var(--explanation-text); 
+    cursor: help; // cursor pointer
+    // 
+    &:hover { 
+      background-color: rgba(var(--explanation-text), 0.1);
+    }
+
+  }
+}
+
+
+// Style for the hypothesis box (same as definition box but inverts light and dark mode colors)
+body .hypothesis-box {
+  background-color: var(--hypothesis-bg);
+  border: 2px solid var(--hypothesis-border);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+body .hypothesis-title {
+  color: var(--hypothesis-title-text) !important;
+  background-color: var(--hypothesis-title-bg); 
+  padding: 5px 10px;
+  margin: -10px -10px 10px -10px; /* Negative margin to extend to edges */
+  border-radius: 6px 6px 0 0;
+  font-weight: bold;
+}
+
+body .hypothesis-content {
+  margin: 0;
+  padding: 0 5px;
+  color: var(--hypothesis-text) !important; 
+  d-math,
+  d-math * {
+    color: var(--hypothesis-text) !important;
+  }
+  .d-cite {
+    color: var(--global-text-color) !important;
+  }
+  em {
+    color: var(--hypothesis-text) !important;
+  }
+  .glossary-term {
+      color: var(--explanation-text) !important;
+      border-bottom: 1px dotted var(--explanation-text); 
+      cursor: help; // cursor pointer
+      // 
+      &:hover { 
+        background-color: rgba(var(--explanation-text), 0.1);
+      }
+
+  }
+}
+
+
+body .explanation-box {
+  background-color: var(--explanation-bg);
+  border: 2px solid var(--explanation-border);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+body .explanation-title {
+  color: var(--explanation-title-text) !important;
+  background-color: var(--explanation-title-bg); 
+  padding: 5px 10px;
+  margin: -10px -10px 10px -10px; /* Negative margin to extend to edges */
+  border-radius: 6px 6px 0 0;
+  font-weight: bold;
+}
+
+body .explanation-content {
+  margin: 0;
+  padding: 0 5px;
+  color: var(--explanation-text) !important; 
+  //color for <d-math> tags	
+  d-math,
+  d-math * {
+    color: var(--explanation-text) !important;
+  }
+  // color for <strong> tags
+  strong {
+    color: var(--explanation-text) !important;
+  }
+  // color for <em> tags
+  em {
+    color: var(--explanation-text) !important;
+  }
+  // color for  {% term %} tags
+  .glossary-term {
+    color: var(--explanation-text) !important;
+    border-bottom: 1px dotted var(--explanation-text); 
+    cursor: help; // cursor pointer
+    // 
+    &:hover { 
+      background-color: rgba(var(--explanation-text), 0.1);
+    }
+
+  }
+  
+
+}
+
+// Generic box styling with external color control
+body .custom-box {
+  background-color: var(--box-bg-color, #F9FDFE);
+  border: 1px solid var(--box-border-color, #8DA5AF);
+  border-left: 4px solid var(--box-border-color, #8DA5AF);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+body .custom-title {
+  color: var(--box-border-color, #8DA5AF) !important;
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: -10px -10px 10px -10px;
+  border-radius: 6px 6px 0 0;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+body .custom-content {
+  margin: 0;
+  padding: 0 5px;
+  color: var(--box-text-color, #8DA5AF) !important;
+
+  d-math,
+  d-math * {
+    color: var(--box-text-color, #8DA5AF) !important;
+  }
+
+  li {
+    color: var(--box-text-color, #8DA5AF) !important;
+  }
+
+  ul {
+    color: var(--box-text-color, #8DA5AF) !important;
+  }
+  
+  strong {
+    color: var(--box-text-color, #8DA5AF) !important;
+  }
+  
+  em {
+    color: var(--box-text-color, #8DA5AF) !important;
+  }
+  
+  ul {
+    margin-bottom: 0;
+  }
+  
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+
+
+.center-figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
