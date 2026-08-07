@@ -37,6 +37,51 @@ a.btncv:hover {
  * CV TIME_TABLE styles
  *****************************/
 
+// Date/location column: sized to content instead of a hard 75px box, so a
+// longer date range (e.g. "09/25 – 06/26") wraps onto a second line inside
+// its own column instead of overflowing into the title next to it.
+.cv-date-col {
+  flex: 0 0 5.5rem;
+  max-width: 5.5rem;
+}
+
+.cv-content-col {
+  flex: 1 1 auto;
+  min-width: 0; // let flex children shrink/wrap instead of forcing overflow
+}
+
+.cv-date-col .badge {
+  display: inline-block;
+  width: 100%;
+  min-width: 4.5rem;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+// Below the sm breakpoint, stack the date above the title instead of
+// squeezing both into the same row.
+@media (max-width: 576px) {
+  .cv .list-group-item > .row {
+    flex-direction: column;
+  }
+
+  .cv-date-col {
+    flex: 0 0 auto;
+    max-width: 100%;
+    text-align: left !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .cv-date-col table.table-cv {
+    display: inline-block;
+  }
+
+  .cv-date-col .badge {
+    width: auto;
+  }
+}
+
 p.location {
   font-size: 0.7rem;
   white-space: nowrap;

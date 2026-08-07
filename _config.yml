@@ -405,7 +405,11 @@ imagemagick:
     - ".jpeg"
     - ".png"
     - ".tiff"
-    - ".gif"
+    # Animated GIFs are intentionally excluded: ImageMagick resizes each raw
+    # (non-coalesced) frame independently, which produces a noisy/garbled
+    # -1400.webp still frame, and a static webp would lose the animation
+    # anyway. GIFs are served as-is; <picture> falls back to the plain
+    # <img> tag when the responsive <source> is absent.
   output_formats:
     webp: "-quality 85"
 

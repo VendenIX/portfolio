@@ -21,7 +21,7 @@
       year: 2023
     - title: First Aid Certificate (PSC1 — Prevention and Civic Rescue, Level 1)
       institution: University of Caen
-      year: Feb 2024
+      year: 02/2024
       description:
         - First aid training providing the skills required to respond in the event of a medical emergency.
     - title: French Baccalauréat, Economics and Social Sciences stream
@@ -33,7 +33,7 @@
   contents:
     - title: AI Engineer — Federated Learning for Medical Imaging
       institution: Centre François Baclesse, Caen
-      year: Sep 2025 - Jun 2026
+      year: 09/25 – 06/26
       description:
         - Fixed-term contract contributing to a national federated learning project advancing personalized medicine through improved survival prediction for glioblastoma patients, building on prior Master's work in explainable AI.
         - Collaborated with a multi-institutional team from Inria and several French cancer centers to design and implement technical solutions.
@@ -42,7 +42,7 @@
         - Addressed complex architectural challenges inherent to federated learning environments.
     - title: Research and Development Intern, Explainability
       institution: Centre François Baclesse, Caen
-      year: Mar 2025 - Aug 2025
+      year: 03/25 – 08/25
       description:
         - Explored and applied explainability techniques (Grad-CAM, LIME, LRP) to understand the predictions of a ResNet-51q model for glioblastoma treatment response.
         - Ran statistical analysis and validation against clinical data to ensure the relevance and robustness of the generated explanations.
@@ -56,7 +56,7 @@
             - Scientific writing and the publication process
     - title: Research and Development Intern, Medical AI
       institution: Centre François Baclesse, Caen
-      year: May 2024 - Jul 2024
+      year: 05/24 – 07/24
       description:
         - Continuation of a Master's project creating a visualization interface and API for a deep learning algorithm for automatic brain lesion segmentation on MRI, under the supervision of Dr. Corroyer-Dulmont (Head of AI and Medical Imaging Engineer at CFB).
         - Deployed, finalized, and optimized an interface based on OHIF Viewer and its API on the center's Windows environments (ML Ops).
@@ -69,7 +69,7 @@
           linkname: paper
     - title: Front-end Web Developer
       institution: Atlas Music, Assas Lab Incubator, Paris
-      year: Jun 2023 - Jul 2023
+      year: 06/23 – 07/23
       description:
         - Implemented Cypress E2E tests and front-end development with React, GraphQL, and MongoDB, with a focus on responsive design.
 
