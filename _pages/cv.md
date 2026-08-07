@@ -4,7 +4,7 @@ permalink: /cv/
 title: cv
 nav: true
 nav_order: 5
-cv_pdf: cv.pdf
+cv_pdf: cv_romain_andres_data_scientist.pdf
 description: Education, experience, and skills — download the full PDF via the icon above.
 toc:
   sidebar: left
