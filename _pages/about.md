@@ -35,6 +35,12 @@ profile:
       label: "Face mesh"
     - path: cv_carousel/12_ascii.png
       label: "ASCII art"
+    - path: cv_carousel/13_orb.jpg
+      label: "ORB keypoints"
+    - path: cv_carousel/14_voronoi.jpg
+      label: "Voronoi diagram"
+    - path: cv_carousel/15_fractal.jpg
+      label: "Fractal quadtree"
   more_info: >
     <p>Caen, Normandy, France</p>
 
