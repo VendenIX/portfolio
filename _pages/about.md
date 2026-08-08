@@ -33,6 +33,8 @@ profile:
       label: "Depth estimation"
     - path: cv_carousel/11_facemesh.jpg
       label: "Face mesh"
+    - path: cv_carousel/12_ascii.png
+      label: "ASCII art"
   more_info: >
     <p>Caen, Normandy, France</p>
 
