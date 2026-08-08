@@ -12,23 +12,23 @@ profile:
   carousel_interval: 3500
   carousel_images:
     - path: cv_carousel/01_original.jpg
-      label: "Photo originale"
+      label: "Original photo"
     - path: cv_carousel/02_eigen.jpg
-      label: "Décomposition en valeurs propres (SVD, rang 20)"
+      label: "Eigenvalue decomposition (SVD, rank 20)"
     - path: cv_carousel/03_jet.jpg
-      label: "Colormap Jet"
+      label: "Jet colormap"
     - path: cv_carousel/04_binary_digits.png
-      label: "Rendu binaire (0 / 1)"
+      label: "Binary digit rendering (0/1)"
     - path: cv_carousel/05_edges.png
-      label: "Détection de contours (Canny)"
-    - path: cv_carousel/06_slic.jpg
-      label: "Superpixels (SLIC)"
+      label: "Edge detection (Canny)"
+    - path: cv_carousel/06_watershed.png
+      label: "Watershed segmentation (connected regions)"
     - path: cv_carousel/07_semantic_seg.jpg
-      label: "Segmentation sémantique (DeepLabV3)"
+      label: "Semantic segmentation (DeepLabV3)"
     - path: cv_carousel/08_yolo.jpg
-      label: "Détection d'objets (YOLOv8)"
+      label: "Object detection (YOLOv8)"
     - path: cv_carousel/09_style_transfer.jpg
-      label: "Transfert de style (Van Gogh)"
+      label: "Neural style transfer (Van Gogh)"
   more_info: >
     <p>Caen, Normandy, France</p>
 

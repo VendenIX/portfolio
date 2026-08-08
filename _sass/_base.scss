@@ -230,19 +230,28 @@ ul.task-list input[type="checkbox"] {
 }
 
 .cv-carousel-caption {
+  position: relative;
   margin-top: 8px;
   font-family: monospace;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--global-text-color-light);
   text-align: center;
   min-height: 1.4em;
 }
 
+// Crossfades in sync with .cv-carousel-frame (same transition duration) so the
+// caption never jumps to the next technique's name before its image has
+// finished fading in.
 .cv-carousel-label {
-  display: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
 }
 
 .cv-carousel-label.is-active {
-  display: block;
+  opacity: 1;
 }
 
 @media (min-width: 576px) {
