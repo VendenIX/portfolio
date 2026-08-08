@@ -50,13 +50,29 @@ layout: default
                 carousel.dataset.cvCarouselInit = '1';
 
                 var frames = carousel.querySelectorAll('.cv-carousel-frame');
-                var labels = carousel.parentElement.querySelectorAll('.cv-carousel-label');
+                var caption = carousel.parentElement.querySelector('.cv-carousel-caption');
+                var labels = caption ? caption.querySelectorAll('.cv-carousel-label') : [];
                 var defaultDelay = parseInt(carousel.dataset.interval, 10) || 3500;
                 if (frames.length < 2) return;
+
+                // Hidden feature: the photo looks like an ordinary static
+                // portrait (just the first frame, no caption) until clicked --
+                // only then does it start cycling through the CV techniques.
+                // Click again to stop and reset back to the plain photo.
                 var i = 0;
+                var timer = null;
+                var playing = false;
+
+                function showFrame(idx) {
+                  frames.forEach(function (f, fi) {
+                    f.classList.toggle('is-active', fi === idx);
+                  });
+                  labels.forEach(function (l, li) {
+                    l.classList.toggle('is-active', li === idx);
+                  });
+                }
+
                 function advance() {
-                  frames[i].classList.remove('is-active');
-                  if (labels[i]) labels[i].classList.remove('is-active');
                   i = (i + 1) % frames.length;
                   var next = frames[i];
                   if (next.src.indexOf('.gif') !== -1) {
@@ -74,14 +90,34 @@ layout: default
                     next.src = '';
                     next.src = base;
                   }
-                  next.classList.add('is-active');
-                  if (labels[i]) labels[i].classList.add('is-active');
+                  showFrame(i);
                   // per-image data-duration (e.g. a GIF that needs longer to
                   // play out) overrides the carousel's default interval
                   var delay = parseInt(next.dataset.duration, 10) || defaultDelay;
-                  setTimeout(advance, delay);
+                  timer = setTimeout(advance, delay);
                 }
-                setTimeout(advance, defaultDelay);
+
+                function stop() {
+                  playing = false;
+                  clearTimeout(timer);
+                  i = 0;
+                  showFrame(0);
+                  if (caption) caption.classList.remove('is-playing');
+                }
+
+                function start() {
+                  playing = true;
+                  if (caption) caption.classList.add('is-playing');
+                  timer = setTimeout(advance, defaultDelay);
+                }
+
+                carousel.addEventListener('click', function () {
+                  if (playing) {
+                    stop();
+                  } else {
+                    start();
+                  }
+                });
               });
             });
           </script>
