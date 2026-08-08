@@ -28,6 +28,13 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Install ImageMagick
+        # ubuntu-latest moved to 24.04, which no longer ships ImageMagick
+        # (the `convert` binary) by default. jekyll-imagemagick needs it to
+        # generate the responsive .webp variants — without it the build
+        # succeeds but silently skips them, leaving broken <picture> sources.
+        # See https://github.com/alshedivat/al-folio/issues/2902
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
