@@ -36,7 +36,12 @@ layout: default
                     once the easter egg is actually triggered, so a page load
                     that never clicks the photo doesn't pay for ~16 extra
                     images (one of them a multi-MB GIF) it'll never show.
+                    `src` is still required (img without src/srcset fails W3C
+                    validation), so it points at an inline 1x1 transparent
+                    GIF -- a couple dozen bytes already inlined in the HTML,
+                    not a real request -- until the real one is swapped in.
                   {% endcomment %}
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                   data-lazy-src="{{ img_src }}"
                 {% endif %}
                 class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
