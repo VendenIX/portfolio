@@ -42,6 +42,13 @@ layout: default
           <script>
             document.addEventListener('DOMContentLoaded', function () {
               document.querySelectorAll('.cv-carousel').forEach(function (carousel) {
+                // guard against double-initialization (e.g. a dev-server live
+                // reload re-running this block without a full page navigation)
+                // spawning a second, out-of-phase advance() loop that fights
+                // the first one over the same frames.
+                if (carousel.dataset.cvCarouselInit) return;
+                carousel.dataset.cvCarouselInit = '1';
+
                 var frames = carousel.querySelectorAll('.cv-carousel-frame');
                 var labels = carousel.parentElement.querySelectorAll('.cv-carousel-label');
                 var defaultDelay = parseInt(carousel.dataset.interval, 10) || 3500;
@@ -56,9 +63,16 @@ layout: default
                     // GIFs keep animating in the background even while hidden
                     // (opacity: 0), so without this they'd show up mid-loop
                     // instead of replaying from the first frame each time.
+                    // Re-assigning the *same* src (rather than cache-busting
+                    // with a query string) still restarts the animation in
+                    // every major browser, but serves it from cache instead
+                    // of re-fetching the whole file over the network every
+                    // cycle -- that re-fetch delay was causing a visible
+                    // flicker for larger GIFs.
                     var base = next.dataset.baseSrc || next.src;
                     next.dataset.baseSrc = base;
-                    next.src = base + '?r=' + Date.now();
+                    next.src = '';
+                    next.src = base;
                   }
                   next.classList.add('is-active');
                   if (labels[i]) labels[i].classList.add('is-active');
