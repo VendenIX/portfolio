@@ -30,6 +30,7 @@ layout: default
                 src="{{ img.path | prepend: 'assets/img/' | relative_url }}"
                 class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
                 alt="{{ img.label }}"
+                {% if img.duration %}data-duration="{{ img.duration }}"{% endif %}
               >
             {% endfor %}
           </div>
@@ -43,16 +44,30 @@ layout: default
               document.querySelectorAll('.cv-carousel').forEach(function (carousel) {
                 var frames = carousel.querySelectorAll('.cv-carousel-frame');
                 var labels = carousel.parentElement.querySelectorAll('.cv-carousel-label');
-                var delay = parseInt(carousel.dataset.interval, 10) || 3500;
+                var defaultDelay = parseInt(carousel.dataset.interval, 10) || 3500;
                 if (frames.length < 2) return;
                 var i = 0;
-                setInterval(function () {
+                function advance() {
                   frames[i].classList.remove('is-active');
                   if (labels[i]) labels[i].classList.remove('is-active');
                   i = (i + 1) % frames.length;
-                  frames[i].classList.add('is-active');
+                  var next = frames[i];
+                  if (next.src.indexOf('.gif') !== -1) {
+                    // GIFs keep animating in the background even while hidden
+                    // (opacity: 0), so without this they'd show up mid-loop
+                    // instead of replaying from the first frame each time.
+                    var base = next.dataset.baseSrc || next.src;
+                    next.dataset.baseSrc = base;
+                    next.src = base + '?r=' + Date.now();
+                  }
+                  next.classList.add('is-active');
                   if (labels[i]) labels[i].classList.add('is-active');
-                }, delay);
+                  // per-image data-duration (e.g. a GIF that needs longer to
+                  // play out) overrides the carousel's default interval
+                  var delay = parseInt(next.dataset.duration, 10) || defaultDelay;
+                  setTimeout(advance, delay);
+                }
+                setTimeout(advance, defaultDelay);
               });
             });
           </script>

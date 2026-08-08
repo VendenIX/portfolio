@@ -41,6 +41,9 @@ profile:
       label: "Voronoi diagram"
     - path: cv_carousel/15_fractal.jpg
       label: "Fractal quadtree"
+    - path: cv_carousel/16_morph.gif
+      label: "Feature-based morph"
+      duration: 5200
   more_info: >
     <p>Caen, Normandy, France</p>
 
