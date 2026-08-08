@@ -43,7 +43,7 @@ profile:
       label: "Fractal quadtree"
     - path: cv_carousel/16_morph.gif
       label: "Feature-based morph"
-      duration: 5200
+      duration: 6700
   more_info: >
     <p>Caen, Normandy, France</p>
 
