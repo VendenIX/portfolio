@@ -32,15 +32,18 @@
       {% if include.class %}
         class="{{ include.class }}"
       {% endif %}
+      {% comment %}
+        The width/height HTML attributes only accept a bare integer (pixels)
+        per spec -- "100%"/"auto" (valid CSS, invalid here) fail W3C
+        validation. Only emit them when an explicit pixel value was passed;
+        otherwise responsive sizing is already handled by the img-fluid CSS
+        class (width:100%; height:auto).
+      {% endcomment %}
       {% if include.width %}
         width="{{ include.width }}"
-      {% else %}
-        width="100%"
       {% endif %}
       {% if include.height %}
         height="{{ include.height }}"
-      {% else %}
-        height="auto"
       {% endif %}
       {% if include['min-width'] or include['min-height'] or include['max-width'] or include['max-height'] %}
         style="

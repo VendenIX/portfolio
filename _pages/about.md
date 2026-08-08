@@ -55,7 +55,7 @@ social: true
 
 I'm Romain, an AI engineer passionate about applying deep learning to solve complex challenges in oncology and personalized medicine.
 
-### research focus
+## research focus
 
 Over the past year, as an AI Engineer at the **Centre François Baclesse** (Caen), I contributed to a national **federated learning** project aimed at improving survival prediction for glioblastoma patients. I built the technical pipeline for this multi-center initiative — distributed training with Fed-BioMed, multi-center data engineering and anonymization, and ML Ops (Docker, deployment) — in collaboration with Inria and other leading French research institutions.
 
@@ -65,11 +65,11 @@ Earlier, I developed a deep learning algorithm UI based on OHIF Viewer for the s
 
 I hold a Master's degree in **AI, Data Analysis and Health Access** from the University of Caen, as part of the SATIN project (Health, Territory, Innovation and Digital Technology).
 
-### what's next
+## what's next
 
 I'm now looking for my next step: a **CIFRE PhD** or a **research / AI engineer position**. I'm always open to discussing opportunities aligned with my interests in explainable AI, federated learning, computer vision, and their clinical applications — see the contact links below.
 
-### beyond research
+## beyond research
 
 Outside of work, I maintain a self-hosted FreeBSD NAS/cloud server, tinker with Docker/Kubernetes clusters, and keep a running technology watch on new developments in AI and medicine.
 

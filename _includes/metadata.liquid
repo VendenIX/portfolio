@@ -17,7 +17,14 @@
 {% capture author_name %}{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}{% endcapture %}
 
 <!-- Standard metadata -->
-<meta charset="utf-8">
+<!--
+  No explicit charset meta here: jekyll-minifier (via htmlcompressor)
+  unconditionally injects its own <meta http-equiv="Content-Type"
+  content="text/html; charset=UTF-8"> right after <head>, regardless of
+  what's declared here. Adding a second one triggers a W3C validator error
+  (a document must not have both an http-equiv=content-type meta and a
+  charset meta), so this is left to the minifier's tag alone.
+-->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>

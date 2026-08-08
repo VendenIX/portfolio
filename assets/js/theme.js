@@ -84,11 +84,13 @@ let applyTheme = () => {
 };
 
 let setHighlight = (theme) => {
+  // "not all" (rather than the invalid media="none") is the standard trick
+  // for a <link> that never matches, i.e. a disabled stylesheet.
   if (theme == "dark") {
-    document.getElementById("highlight_theme_light").media = "none";
+    document.getElementById("highlight_theme_light").media = "not all";
     document.getElementById("highlight_theme_dark").media = "";
   } else {
-    document.getElementById("highlight_theme_dark").media = "none";
+    document.getElementById("highlight_theme_dark").media = "not all";
     document.getElementById("highlight_theme_light").media = "";
   }
 };
