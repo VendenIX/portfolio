@@ -14,21 +14,21 @@ profile:
     - path: cv_carousel/01_original.jpg
       label: "Original photo"
     - path: cv_carousel/02_eigen.jpg
-      label: "Eigenvalue decomposition (SVD, rank 20)"
+      label: "Eigenvalue decomposition"
     - path: cv_carousel/03_jet.jpg
       label: "Jet colormap"
     - path: cv_carousel/04_binary_digits.png
-      label: "Binary digit rendering (0/1)"
+      label: "Binary digit rendering"
     - path: cv_carousel/05_edges.png
-      label: "Edge detection (Canny)"
+      label: "Edge detection"
     - path: cv_carousel/06_watershed.png
-      label: "Watershed segmentation (connected regions)"
+      label: "Watershed segmentation"
     - path: cv_carousel/07_semantic_seg.jpg
-      label: "Semantic segmentation (DeepLabV3)"
+      label: "Semantic segmentation"
     - path: cv_carousel/08_yolo.jpg
-      label: "Object detection (YOLOv8)"
+      label: "Object detection"
     - path: cv_carousel/09_style_transfer.jpg
-      label: "Neural style transfer (Van Gogh)"
+      label: "Neural style transfer"
   more_info: >
     <p>Caen, Normandy, France</p>
 
