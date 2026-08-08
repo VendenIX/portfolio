@@ -740,6 +740,15 @@ footer.sticky-bottom {
       margin-bottom: 1rem;
 
       .preview {
+        // figure.liquid used to fall back to invalid HTML width="100%"/
+        // height="auto" attributes for any image without explicit pixel
+        // dimensions (removed for W3C validity -- those attributes only
+        // accept a bare integer). This class had no CSS of its own, so
+        // publication preview images (like the NeuroImage/glioblastoma
+        // GIFs) lost their sizing entirely and rendered at native
+        // resolution. Same effect, done as valid CSS instead.
+        width: 100%;
+        height: auto;
       }
 
       .abbr {
