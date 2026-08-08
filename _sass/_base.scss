@@ -206,6 +206,45 @@ ul.task-list input[type="checkbox"] {
   margin-right: 1rem;
 }
 
+// CV technique carousel (crossfades through several computer-vision
+// renderings of the profile photo instead of a single static image)
+.cv-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.cv-carousel-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.cv-carousel-frame.is-active {
+  opacity: 1;
+}
+
+.cv-carousel-caption {
+  margin-top: 8px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-align: center;
+  min-height: 1.4em;
+}
+
+.cv-carousel-label {
+  display: none;
+}
+
+.cv-carousel-label.is-active {
+  display: block;
+}
+
 @media (min-width: 576px) {
   .profile {
     width: 30%;

@@ -17,14 +17,47 @@ layout: default
   <article>
     {% if page.profile %}
       <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
+        {% if page.profile.image_circular %}
+          {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
+        {% else %}
+          {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
+        {% endif %}
+
+        {% if page.profile.carousel and page.profile.carousel_images %}
+          <div class="cv-carousel" data-interval="{{ page.profile.carousel_interval | default: 3500 }}">
+            {% for img in page.profile.carousel_images %}
+              <img
+                src="{{ img.path | prepend: 'assets/img/' | relative_url }}"
+                class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
+                alt="{{ img.label }}"
+              >
+            {% endfor %}
+          </div>
+          <div class="cv-carousel-caption">
+            {% for img in page.profile.carousel_images %}
+              <span class="cv-carousel-label{% if forloop.first %} is-active{% endif %}">{{ img.label }}</span>
+            {% endfor %}
+          </div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.querySelectorAll('.cv-carousel').forEach(function (carousel) {
+                var frames = carousel.querySelectorAll('.cv-carousel-frame');
+                var labels = carousel.parentElement.querySelectorAll('.cv-carousel-label');
+                var delay = parseInt(carousel.dataset.interval, 10) || 3500;
+                if (frames.length < 2) return;
+                var i = 0;
+                setInterval(function () {
+                  frames[i].classList.remove('is-active');
+                  if (labels[i]) labels[i].classList.remove('is-active');
+                  i = (i + 1) % frames.length;
+                  frames[i].classList.add('is-active');
+                  if (labels[i]) labels[i].classList.add('is-active');
+                }, delay);
+              });
+            });
+          </script>
+        {% elsif page.profile.image %}
           {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid z-depth-1
-      rounded' %}
-          {% endif %}
           {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
       30vw, 95vw"{% endcapture %}
           {%
