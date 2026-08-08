@@ -29,6 +29,10 @@ profile:
       label: "Object detection"
     - path: cv_carousel/09_style_transfer.jpg
       label: "Neural style transfer"
+    - path: cv_carousel/10_depth.jpg
+      label: "Depth estimation"
+    - path: cv_carousel/11_facemesh.jpg
+      label: "Face mesh"
   more_info: >
     <p>Caen, Normandy, France</p>
 
