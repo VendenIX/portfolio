@@ -15,8 +15,8 @@ profile:
       label: "Original photo"
     - path: cv_carousel/02_eigen.jpg
       label: "Eigenvalue decomposition"
-    - path: cv_carousel/03_jet.jpg
-      label: "Jet colormap"
+    - path: cv_carousel/03_gradcam.jpg
+      label: "Grad-CAM (CLIP)"
     - path: cv_carousel/04_binary_digits.png
       label: "Binary digit rendering"
     - path: cv_carousel/05_edges.png
