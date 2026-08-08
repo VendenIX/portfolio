@@ -26,8 +26,19 @@ layout: default
         {% if page.profile.carousel and page.profile.carousel_images %}
           <div class="cv-carousel" data-interval="{{ page.profile.carousel_interval | default: 3500 }}">
             {% for img in page.profile.carousel_images %}
+              {% assign img_src = img.path | prepend: 'assets/img/' | relative_url %}
               <img
-                src="{{ img.path | prepend: 'assets/img/' | relative_url }}"
+                {% if forloop.first %}
+                  src="{{ img_src }}"
+                {% else %}
+                  {% comment %}
+                    Deferred: everything but the first frame is only fetched
+                    once the easter egg is actually triggered, so a page load
+                    that never clicks the photo doesn't pay for ~16 extra
+                    images (one of them a multi-MB GIF) it'll never show.
+                  {% endcomment %}
+                  data-lazy-src="{{ img_src }}"
+                {% endif %}
                 class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
                 alt="{{ img.label }}"
                 {% if img.duration %}data-duration="{{ img.duration }}"{% endif %}
@@ -107,6 +118,14 @@ layout: default
 
                 function start() {
                   playing = true;
+                  // first activation only: this is when the deferred frames
+                  // (everything but the first) actually start downloading
+                  frames.forEach(function (f) {
+                    if (f.dataset.lazySrc) {
+                      f.src = f.dataset.lazySrc;
+                      f.removeAttribute('data-lazy-src');
+                    }
+                  });
                   if (caption) caption.classList.add('is-playing');
                   timer = setTimeout(advance, defaultDelay);
                 }
