@@ -46,7 +46,33 @@ docker run --rm -v "$(pwd)":/srv/jekyll -w /srv/jekyll amirpourmand/al-folio:lat
 
 ## Deployment
 
-`.github/workflows/main.yml` (GitHub Actions → Pages) is in place but **not yet active** — the repo's GitHub Pages source is still set to "Deploy from a branch" (`gh-pages`), left over from the previous React version. To go live with this version: merge into `main`, then switch **Settings → Pages → Build and deployment → Source** to **GitHub Actions**.
+Every push to `main` rebuilds and deploys the site (`.github/workflows/main.yml`, GitHub Actions → Pages, ≈ 2–3 min). The `portfolio` command wraps the whole routine (install it once with `tools/portfolio install`, which links it into `~/.local/bin`):
+
+```bash
+portfolio dev                     # local site with live reload, http://localhost:8080/portfolio/
+portfolio build                   # production build as the CI + broken links/images check
+portfolio publish "Update CV"     # build check, commit everything, push to main, follow the deployment
+portfolio status                  # last deployments and whether the site answers
+```
+
+`publish` asks for confirmation (`-y` to skip it, `--fast` to skip the local build). Run from a branch, it pushes the branch, merges it into `main` and pushes `main`.
+
+## Working with agents (Claude Code)
+
+The repository carries its own agent system: common rules in `AGENTS.md` (loaded through
+`CLAUDE.md`), roles in `.claude/agents/`, the `/objective` command to plan and run a goal end to
+end, project memory in `docs/memory/` (start with `state.md`), tasks in `docs/tasks/graph.yaml`,
+reviews in `docs/reviews/`. How it fits together: `docs/agents/orchestration.md`. Agents never
+commit nor push: a push to `main` publishes the site.
+
+```bash
+tools/build.sh                                  # production build, as the CI -> out/site/
+python3 tools/check_site.py                     # broken internal links / images
+tools/screenshot.sh out/shots "" cv/            # desktop + phone, light + dark
+python3 tools/tasks.py status                   # task graph
+```
+
+`docs/`, `tools/`, `out/`, `AGENTS.md` and `CLAUDE.md` are excluded from the site in `_config.yml`.
 
 ## License
 

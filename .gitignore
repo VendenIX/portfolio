@@ -2,3 +2,5 @@
 Gemfile.lock
 _site
 commands.txt
+out/
+docs/tasks/graph.yaml.lock

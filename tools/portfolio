@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+# One command for the portfolio's daily life (owner only: agents never run `publish`, D-002).
+#
+#   portfolio dev                 local site with live reload, http://localhost:8080/portfolio/
+#   portfolio build               production build (as the CI) + broken links/images check
+#   portfolio shots [page ...]    screenshots of the build (desktop/phone, light/dark)
+#   portfolio publish ["msg"]     check, commit everything, push to main, follow the deployment
+#   portfolio status              last deployments on GitHub and whether the site answers
+#   portfolio install             make `portfolio` available everywhere (~/.local/bin)
+#
+# publish options: -y (no confirmation), --fast (skip the local build: the CI builds anyway).
+# A push to main is what deploys (GitHub Actions, .github/workflows/main.yml -> GitHub Pages).
+set -euo pipefail
+
+self="$(readlink -f "${BASH_SOURCE[0]}")"
+root="$(cd "$(dirname "$self")/.." && pwd)"
+repo="VendenIX/portfolio"
+site_url="https://vendenix.github.io/portfolio/"
+api="https://api.github.com/repos/$repo"
+cd "$root"
+
+bold() { printf '\033[1m%s\033[0m\n' "$*"; }
+ok()   { printf '\033[32m✔ %s\033[0m\n' "$*"; }
+err()  { printf '\033[31m✘ %s\033[0m\n' "$*" >&2; }
+die()  { err "$*"; exit 1; }
+
+json() {  # json <python expression on `d`>: read JSON on stdin
+  python3 -c "import json, sys; d = json.load(sys.stdin); print($1)"
+}
+
+cmd_dev() {
+  bold "Local site: http://localhost:8080/portfolio/  (Ctrl+C to stop)"
+  docker compose up
+  docker compose down
+}
+
+cmd_build() {
+  bold "Production build…"
+  tools/build.sh >/tmp/portfolio-build.log 2>&1 \
+    || { tail -n 30 /tmp/portfolio-build.log; die "build failed (full log: /tmp/portfolio-build.log)"; }
+  ok "build ok -> out/site/"
+  python3 tools/check_site.py | tail -n 15 || die "broken links or images (see above)"
+  ok "no broken internal link or image"
+}
+
+cmd_shots() {
+  [ -f out/site/index.html ] || cmd_build
+  local dir="out/shots/$(date +%Y%m%d-%H%M%S)"
+  tools/screenshot.sh "$dir" "$@"
+  ok "screenshots in $dir"
+}
+
+last_runs() {  # last_runs <n>
+  curl -fsS "$api/actions/runs?per_page=$1" | json \
+    "'\n'.join(f\"{r['created_at'][:16].replace('T', ' ')}  {r['head_sha'][:7]}  {r['status']:<11} {r['conclusion'] or '-':<10} {r['display_title'][:60]}\" for r in d['workflow_runs'])"
+}
+
+cmd_status() {
+  bold "Last deployments ($repo):"
+  last_runs 5 || err "GitHub API unreachable"
+  local code
+  code="$(curl -s -o /dev/null -w '%{http_code}' "$site_url")"
+  [ "$code" = 200 ] && ok "$site_url answers (200)" || err "$site_url answers $code"
+}
+
+follow_deploy() {  # follow_deploy <sha>: wait for the workflow run of this commit
+  local sha="$1" run="" status conclusion url i
+  bold "Following the deployment of ${sha:0:7} (≈ 2–3 min)…"
+  for i in $(seq 60); do
+    run="$(curl -fsS "$api/actions/runs?head_sha=$sha&per_page=1" 2>/dev/null \
+           | json "(lambda r: f\"{r['status']} {r['conclusion'] or '-'} {r['html_url']}\" if r else '')(d['workflow_runs'][0] if d['workflow_runs'] else None)" \
+           2>/dev/null || true)"
+    if [ -n "$run" ]; then
+      read -r status conclusion url <<<"$run"
+      printf '\r  %-12s %s' "$status" "$url"
+      if [ "$status" = completed ]; then
+        echo
+        [ "$conclusion" = success ] && { ok "deployed: $site_url"; return 0; }
+        die "deployment $conclusion: $url"
+      fi
+    else
+      printf '\r  waiting for GitHub to start the workflow…'
+    fi
+    sleep 10
+  done
+  echo
+  err "still running after 10 min: portfolio status, or https://github.com/$repo/actions"
+}
+
+cmd_publish() {
+  local yes=0 fast=0 msg=""
+  for a in "$@"; do
+    case "$a" in
+      -y|--yes) yes=1 ;;
+      --fast) fast=1 ;;
+      -*) die "unknown option: $a" ;;
+      *) msg="$a" ;;
+    esac
+  done
+
+  local branch
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  git fetch -q origin main || die "cannot reach GitHub (git fetch)"
+
+  bold "Changes to publish (branch $branch):"
+  git status --short
+  local ahead
+  ahead="$(git rev-list --count origin/main..HEAD)"
+  [ "$ahead" -gt 0 ] && echo "  + $ahead local commit(s) not pushed yet"
+  if [ -z "$(git status --porcelain)" ] && [ "$ahead" -eq 0 ] && [ "$branch" = main ]; then
+    ok "nothing to publish: main is already on GitHub"
+    return 0
+  fi
+
+  [ "$fast" -eq 1 ] || cmd_build
+
+  if [ -n "$(git status --porcelain)" ]; then
+    if [ -z "$msg" ]; then
+      read -r -p "Commit message: " msg
+      [ -n "$msg" ] || die "empty message, nothing done"
+    fi
+  fi
+  if [ "$yes" -eq 0 ]; then
+    read -r -p "Publish online now? [y/N] " answer
+    [[ "$answer" =~ ^[yYoO]$ ]] || die "cancelled, nothing done"
+  fi
+
+  if [ -n "$(git status --porcelain)" ]; then
+    git add -A
+    git commit -q -m "$msg"
+    ok "commit $(git rev-parse --short HEAD): $msg"
+  fi
+  if [ "$branch" != main ]; then
+    git push -q -u origin "$branch"
+    git checkout -q main
+    git pull -q --ff-only origin main
+    git merge -q --no-edit "$branch" || die "merge conflict between $branch and main: resolve, then rerun"
+    ok "branch $branch merged into main"
+  else
+    git pull -q --rebase origin main || die "conflict with GitHub: resolve (git status), then rerun"
+  fi
+  git push -q origin main
+  ok "pushed to GitHub"
+  follow_deploy "$(git rev-parse HEAD)"
+}
+
+cmd_install() {
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$self" "$HOME/.local/bin/portfolio"
+  ok "installed: ~/.local/bin/portfolio -> $self"
+  case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) echo "Add to ~/.bashrc:  export PATH=\"\$HOME/.local/bin:\$PATH\"" ;;
+  esac
+}
+
+case "${1:-help}" in
+  dev) cmd_dev ;;
+  build) cmd_build ;;
+  shots) shift; cmd_shots "$@" ;;
+  publish) shift; cmd_publish "$@" ;;
+  status) cmd_status ;;
+  install) cmd_install ;;
+  help|-h|--help) sed -n '2,12p' "$self" | sed 's/^# \{0,1\}//' ;;
+  *) err "unknown command: $1"; sed -n '2,12p' "$self" | sed 's/^# \{0,1\}//'; exit 1 ;;
+esac

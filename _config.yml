@@ -227,7 +227,10 @@ kramdown:
 # Includes & excludes
 include: ["_pages"]
 exclude:
+  - AGENTS.md
   - bin/
+  - CLAUDE.md
+  - commands.txt
   - CONTRIBUTING.md
   - CUSTOMIZE.md
   - Dockerfile
@@ -245,7 +248,12 @@ exclude:
   - purgecss.config.js
   - README.md
   - readme_preview/
+  - requirements.txt
   - vendor
+  # agent system (docs/agents/orchestration.md, P-008): never published
+  - docs/
+  - out/
+  - tools/
 keep_files:
   - CNAME
   - .nojekyll

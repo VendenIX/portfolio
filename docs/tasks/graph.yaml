@@ -1,0 +1,56 @@
+version: 1
+objectives:
+- id: agentic
+  goal: Lightweight, observable agent system in the repository (rules, roles, memory, task graph, gates),
+    adapted from SynthPed (D-003)
+  status: done
+  success:
+  - tools/tasks.py check passes and a real gate (production build + site check) passes through tools/tasks.py
+    verify
+  - internal files (docs/, tools/, AGENTS.md, CLAUDE.md, out/) are not published by Jekyll
+  stop:
+  - the owner finds the system heavier than the current workflow
+tasks:
+- id: agentic-setup
+  objective: agentic
+  title: Agent system set up
+  goal: AGENTS.md, .claude/ (agents, /objective skill), docs/agents, docs/memory, docs/tasks, docs/reviews
+    and tools/ (tasks.py, build.sh, check_site.py, screenshot.sh)
+  agent: orchestrator
+  scope: tooling
+  status: done
+  files:
+  - AGENTS.md
+  - CLAUDE.md
+  - .claude/
+  - docs/
+  - tools/
+  - _config.yml
+  - .gitignore
+  - README.md
+  validation:
+  - python3 tools/tasks.py check
+  - tools/build.sh
+  - python3 tools/check_site.py
+  - '! test -e out/site/docs && ! test -e out/site/tools && ! test -e out/site/AGENTS.md && ! test -e
+    out/site/CLAUDE.md'
+  attempts:
+  - date: '2026-10-15'
+    agent: orchestrator
+    outcome: success
+    summary: architecture read from SynthPed (read-only) and adapted; experimenter, researcher,
+      machine split and CPU limiter dropped, content-reviewer added; tasks.py rewritten without
+      pydantic; Docker build, site check and screenshot tools tested (checker catches a removed
+      image; light and dark forced explicitly)
+  results: rules (AGENTS.md, CLAUDE.md), 4 roles + /objective skill, orchestration and context-cost
+    docs, memory (D-001..D-008, P-001..P-008 drawn from the git history), task graph and its tool,
+    gate tools; internal files excluded from the site; first gate passed (build 35 s with cached gems)
+  handoff: 'Default validation for any site task: tools/build.sh then python3 tools/check_site.py.
+    Owner publishes with tools/portfolio publish (D-009).'
+  gates:
+  - date: '2026-10-15T01:11:59'
+    passed: true
+    log: out/gates/agentic-setup-20261015-011159-227961.log
+    commands: 8db39265e5f3
+    tree: 7f131638f431
+    host: Yannis-Workstation-IA
