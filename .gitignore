@@ -4,3 +4,4 @@ _site
 commands.txt
 out/
 docs/tasks/graph.yaml.lock
+private/

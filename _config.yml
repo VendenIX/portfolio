@@ -253,6 +253,7 @@ exclude:
   # agent system (docs/agents/orchestration.md, P-008): never published
   - docs/
   - out/
+  - private/
   - tools/
 keep_files:
   - CNAME

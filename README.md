@@ -65,6 +65,15 @@ end, project memory in `docs/memory/` (start with `state.md`), tasks in `docs/ta
 reviews in `docs/reviews/`. How it fits together: `docs/agents/orchestration.md`. Agents never
 commit nor push: a push to `main` publishes the site.
 
+The point is not to let an AI write the site unchecked, but to make its work verifiable:
+
+- a task is not finished because an agent says so;
+- every task passes an automatic gate (production build, broken links and images);
+- a distinct reviewer actively looks for why the work is wrong;
+- the memory of past mistakes is dated and sourced (`docs/memory/pitfalls.md`).
+
+![Agent architecture of the portfolio](docs/img/agent-architecture.png)
+
 ```bash
 tools/build.sh                                  # production build, as the CI -> out/site/
 python3 tools/check_site.py                     # broken internal links / images
