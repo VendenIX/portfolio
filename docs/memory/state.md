@@ -6,14 +6,14 @@ Updated 2026-10-15. Short by principle (60 lines at most): details are in the li
 
 Personal academic portfolio (Jekyll, al-folio), migrated from React on 2026-08-07 (D-001),
 online at <https://vendenix.github.io/portfolio/>; content is up to date as of the CV update of
-2026-10-08.
+2026-10-15.
 
 ## By area
 
 | Area | State |
 | --- | --- |
 | About page | bio rewritten 2026-08-07 (contract at Centre François Baclesse over, looking for a CIFRE PhD / research engineer position); CV carousel as a click-to-reveal easter egg (D-007) |
-| CV | `_data/cv.yml` + PDF `assets/pdf/cv_romain_andres_data_scientist.pdf`, updated 2026-10-08 |
+| CV | `_data/cv.yml` + PDF `assets/pdf/cv_romain_andres_data_scientist.pdf`, updated 2026-10-15 (XAI paper published in JIIM, online 2026-10-13, DOI link, code link VendenIX only) |
 | Projects | 7 posts in `_posts/` (2021 → 2025) |
 | Publications | `_bibliography/papers.bib` (NeuroImage 2025 co-first author; XAI glioblastoma first author, JIIM 2026, online 2026-10-13, doi 10.1007/s10278-026-02381-5); the project post follows the published paper |
 | Theme | al-folio, W3C-clean production output since 2026-08-09 (P-005, P-006) |
@@ -22,8 +22,8 @@ online at <https://vendenix.github.io/portfolio/>; content is up to date as of t
 
 ## Next steps
 
-Objective `jiim-publication` done (2026-10-15): site switched to the published JIIM article; CV PDF
-still says "Accepted, in press" (owner regenerates it outside the repository).
+Objective `jiim-publication` done (2026-10-15): site and CV PDF switched to the published JIIM
+article (the owner regenerates the PDF outside the repository; replaced 2026-10-15).
 
 ## Environment
 
