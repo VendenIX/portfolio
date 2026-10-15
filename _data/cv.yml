@@ -47,7 +47,7 @@
         - Explored and applied explainability techniques (Grad-CAM, LIME, LRP) to understand the predictions of a ResNet-51q model for glioblastoma treatment response.
         - Ran statistical analysis and validation against clinical data to ensure the relevance and robustness of the generated explanations.
         - Compared explainability methods and identified the model's limitations across patient cases.
-        - Wrote and submitted a scientific article presenting the research outcomes to a peer-reviewed venue.
+        - Wrote the first-author article presenting the research outcomes, published in the Journal of Imaging Informatics in Medicine (2026).
         - title: Skills strengthened
           contents:
             - Deep learning & explainability (ResNet, Grad-CAM, LIME, LRP)
@@ -76,18 +76,20 @@
 - title: Publications
   type: time_table
   contents:
+    - title: "Explainability and Clinical Trust of Deep Learning in Glioblastoma Treatment Efficacy Prediction: A Comprehensive Framework"
+      institution: Journal of Imaging Informatics in Medicine (2026) — first author
+      year: 2026
+      linkitems:
+        - link: https://doi.org/10.1007/s10278-026-02381-5
+          linkname: paper
+        - link: https://github.com/VendenIX/GBM-Treatment-Response-XAI
+          linkname: code
     - title: Development and routine implementation of a deep learning algorithm for automatic brain metastases segmentation on MRI for RANO-BM criteria follow-up
       institution: NeuroImage, Volume 306 (2025) — co-first author
       year: 2025
       linkitems:
         - link: https://doi.org/10.1016/j.neuroimage.2025.121002
           linkname: paper
-    - title: "Explainability and Clinical Trust of Deep Learning in Glioblastoma Treatment Efficacy Prediction: A Comprehensive Framework"
-      institution: Manuscript under review — first author
-      year: 2025
-      linkitems:
-        - link: https://github.com/VendenIX/GBM-Treatment-Response-XAI
-          linkname: code
 
 - title: Skills
   type: nested_list

@@ -59,7 +59,7 @@ I'm Romain, an AI engineer passionate about applying deep learning to solve comp
 
 Over the past year, as an AI Engineer at the **Centre François Baclesse** (Caen), I contributed to a national **federated learning** project aimed at improving survival prediction for glioblastoma patients. I built the technical pipeline for this multi-center initiative — distributed training with Fed-BioMed, multi-center data engineering and anonymization, and ML Ops (Docker, deployment) — in collaboration with Inria and other leading French research institutions.
 
-This role built directly on my Master's thesis on the explainability (XAI) of a deep learning model for predicting treatment response in glioblastoma, where I explored methods such as Grad-CAM, LRP, and mechanistic interpretability to make AI predictions more transparent for clinicians. This work is now the subject of a [first-author manuscript]({{ '/publications/' | relative_url }}) currently under review.
+This role built directly on my Master's thesis on the explainability (XAI) of a deep learning model for predicting treatment response in glioblastoma, where I explored methods such as Grad-CAM, LRP, and mechanistic interpretability to make AI predictions more transparent for clinicians. This work led to a [first-author publication]({{ '/publications/' | relative_url }}) in the *Journal of Imaging Informatics in Medicine* (2026).
 
 Earlier, I developed a deep learning algorithm UI based on OHIF Viewer for the segmentation of brain metastases, which resulted in a [co-first author publication]({{ '/publications/' | relative_url }}) in *NeuroImage*.
 

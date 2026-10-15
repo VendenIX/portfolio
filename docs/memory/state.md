@@ -15,14 +15,15 @@ online at <https://vendenix.github.io/portfolio/>; content is up to date as of t
 | About page | bio rewritten 2026-08-07 (contract at Centre François Baclesse over, looking for a CIFRE PhD / research engineer position); CV carousel as a click-to-reveal easter egg (D-007) |
 | CV | `_data/cv.yml` + PDF `assets/pdf/cv_romain_andres_data_scientist.pdf`, updated 2026-10-08 |
 | Projects | 7 posts in `_posts/` (2021 → 2025) |
-| Publications | `_bibliography/papers.bib` (NeuroImage 2025 co-first author; XAI glioblastoma manuscript under review) |
+| Publications | `_bibliography/papers.bib` (NeuroImage 2025 co-first author; XAI glioblastoma first author, JIIM 2026, online 2026-10-13, doi 10.1007/s10278-026-02381-5); the project post follows the published paper |
 | Theme | al-folio, W3C-clean production output since 2026-08-09 (P-005, P-006) |
 | CI / deployment | every push to `main` deploys (`.github/workflows/main.yml`, checked on the Actions history 2026-10-15); owner's routine: `portfolio publish` (D-009) |
 | Agent system | set up 2026-10-15 (D-003): roles, task graph, memory, gates (`tools/`) |
 
 ## Next steps
 
-No active objective yet: the owner gives one with `/objective <goal>`.
+Objective `jiim-publication` done (2026-10-15): site switched to the published JIIM article; CV PDF
+still says "Accepted, in press" (owner regenerates it outside the repository).
 
 ## Environment
 

@@ -10,6 +10,17 @@ objectives:
   - internal files (docs/, tools/, AGENTS.md, CLAUDE.md, out/) are not published by Jekyll
   stop:
   - the owner finds the system heavier than the current workflow
+- id: jiim-publication
+  goal: The XAI glioblastoma manuscript appears as published in Journal of Imaging Informatics in Medicine
+    (online 2026-10-13, doi 10.1007/s10278-026-02381-5) everywhere on the site, and the project post matches
+    the published paper
+  status: done
+  success:
+  - no page of the built site calls the paper "under review" or "manuscript"
+  - papers.bib, cv.yml, about.md and the project post give the same reference (journal, 2026, DOI)
+  - the post's claims are all supported by the published paper (private/ PDF)
+  stop:
+  - a fact needed for the site cannot be sourced from the paper or the owner
 tasks:
 - id: agentic-setup
   objective: agentic
@@ -38,15 +49,10 @@ tasks:
   - date: '2026-10-15'
     agent: orchestrator
     outcome: success
-    summary: architecture read from SynthPed (read-only) and adapted; experimenter, researcher,
-      machine split and CPU limiter dropped, content-reviewer added; tasks.py rewritten without
-      pydantic; Docker build, site check and screenshot tools tested (checker catches a removed
-      image; light and dark forced explicitly)
-  results: rules (AGENTS.md, CLAUDE.md), 4 roles + /objective skill, orchestration and context-cost
-    docs, memory (D-001..D-008, P-001..P-008 drawn from the git history), task graph and its tool,
-    gate tools; internal files excluded from the site; first gate passed (build 35 s with cached gems)
-  handoff: 'Default validation for any site task: tools/build.sh then python3 tools/check_site.py.
-    Owner publishes with tools/portfolio publish (D-009).'
+    summary: architecture read from SynthPed (read-only) and adapted; experimenter, researcher, machine
+      split and CPU limiter dropped, content-reviewer added; tasks.py rewritten without pydantic; Docker
+      build, site check and screenshot tools tested (checker catches a removed image; light and dark forced
+      explicitly)
   gates:
   - date: '2026-10-15T01:11:59'
     passed: true
@@ -54,3 +60,166 @@ tasks:
     commands: 8db39265e5f3
     tree: 7f131638f431
     host: Yannis-Workstation-IA
+  results: rules (AGENTS.md, CLAUDE.md), 4 roles + /objective skill, orchestration and context-cost docs,
+    memory (D-001..D-008, P-001..P-008 drawn from the git history), task graph and its tool, gate tools;
+    internal files excluded from the site; first gate passed (build 35 s with cached gems)
+  handoff: 'Default validation for any site task: tools/build.sh then python3 tools/check_site.py. Owner
+    publishes with tools/portfolio publish (D-009).'
+- id: pub-jiim-meta
+  objective: jiim-publication
+  title: Publication metadata switched to published (bib, CV, About)
+  goal: papers.bib entry becomes an @article in JIIM (2026, DOI, published abstract, owner's code link);
+    cv.yml publication entry and internship bullet, about.md sentence say published
+  agent: orchestrator
+  scope: content
+  priority: 1
+  status: done
+  files:
+  - _bibliography/papers.bib
+  - _data/cv.yml
+  - _pages/about.md
+  - _pages/publications.md
+  context:
+  - D-005
+  - D-007
+  validation:
+  - tools/build.sh
+  - python3 tools/check_site.py
+  - '! grep -rqi "under review" out/site/publications/index.html out/site/cv/index.html out/site/index.html'
+  attempts:
+  - date: '2026-10-15'
+    agent: orchestrator
+    outcome: success
+    summary: fast lane; @unpublished -> @article JIIM 2026 (DOI, html = DOI, code = VendenIX repo, keywords,
+      note online 13 Oct 2026, abstract rewritten from the published abstract, author "Moreau, Noémie
+      N." as in the paper, key andres_explainability_2026); cv.yml entry moved first with paper + code
+      links, internship bullet says published; about.md sentence
+  gates:
+  - date: '2026-10-15T01:53:46'
+    passed: true
+    log: out/gates/pub-jiim-meta-20261015-015346-551255.log
+    commands: 1cfda19d5226
+    tree: 04bb842f6067
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T02:01:00'
+    passed: true
+    log: out/gates/pub-jiim-meta-20261015-020100-011591.log
+    commands: 1cfda19d5226
+    tree: 6839e205bbaa
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T02:02:27'
+    passed: true
+    log: out/gates/pub-jiim-meta-20261015-020227-858829.log
+    commands: 1cfda19d5226
+    tree: 78f1b723b6ff
+    host: Yannis-Workstation-IA
+  results: publications, CV and About pages show the JIIM 2026 article; rendered entry checked; publications
+    page description no longer mentions manuscripts
+  handoff: Reference to reuse in the post - Andres R, Moreau NN, Dessoude L, Le Henaff L, Missohou F,
+    Stefan D, Desmonts A, Herault R, Corroyer-Dulmont A. Journal of Imaging Informatics in Medicine, 2026
+    (online 13 October 2026), https://doi.org/10.1007/s10278-026-02381-5
+- id: post-xai-align
+  objective: jiim-publication
+  title: Project post aligned with the published paper
+  goal: Rewrite _posts/2025-08-01-xai-glioblastoma-treatment-response.md (description, pipeline, findings,
+    outcome) so every claim is supported by the published JIIM paper
+  agent: implementer
+  description: 'Source: out/work/post-xai-align/paper.txt (text of private/Andres et al. - 2026 - ....pdf).
+
+    Owner decisions (2026-10-15): align the post on the paper; causal activation patching is kept
+
+    only as an exploratory part of the internship, explicitly not retained in the paper; code link
+
+    stays github.com/VendenIX/GBM-Treatment-Response-XAI; main link is the DOI
+
+    https://doi.org/10.1007/s10278-026-02381-5 (open access, CC BY-NC-ND).
+
+    Known errors of the current post: the finding is a high-intensity heuristic (hyper-intense
+
+    pixels at the surgical site / skull periphery drive "Long-Term", tumour enhancement drives
+
+    "Short-Term"); the resection-status proxy is only a plausible interpretation in the paper,
+
+    not a confirmed fact. The model (ResNet-51q, AUC 0.89) comes from a previous study and was
+
+    audited, not trained, in this work.
+
+    '
+  scope: content
+  priority: 1
+  status: done
+  depends_on:
+  - pub-jiim-meta
+  success:
+  - every number and claim of the post can be pointed to in paper.txt
+  - outcome section gives authors exactly as in the paper, journal, 2026, online 13 October 2026, DOI
+    link, keywords not required
+  - activation patching, if mentioned, is presented as exploratory and not part of the paper
+  - sober academic English (D-007), length similar to the current post
+  failure:
+  - a claim needs a fact not in the paper nor given by the owner
+  files:
+  - _posts/2025-08-01-xai-glioblastoma-treatment-response.md
+  context:
+  - D-005
+  - D-007
+  - AGENTS.md
+  validation:
+  - tools/build.sh
+  - python3 tools/check_site.py
+  - '! grep -qi "under review" _posts/2025-08-01-xai-glioblastoma-treatment-response.md'
+  review_required: true
+  attempts:
+  - date: '2026-10-15'
+    agent: implementer
+    outcome: success
+    summary: post rewritten on the published paper (intensity heuristic, ablation, probing, reader study;
+      resection only a plausible interpretation; patching exploratory); review round 1 changes
+  - date: '2026-10-15'
+    agent: implementer
+    outcome: success
+    summary: fresh agent applied review 1 (OR 1.336 / 1.598 by phase, non-significant heatmap gain p =
+      0.081, surgical-site hedge, 0.89 baseline); orchestrator fixed the bib author and abstract
+  reviews:
+  - file: docs/reviews/post-xai-align-1.md
+    verdict: changes
+  - file: docs/reviews/post-xai-align-2.md
+    verdict: accept
+  gates:
+  - date: '2026-10-15T01:55:30'
+    passed: true
+    log: out/gates/post-xai-align-20261015-015530-010707.log
+    commands: e47d3d5c771b
+    tree: 9cd4549ebb02
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T01:56:17'
+    passed: true
+    log: out/gates/post-xai-align-20261015-015617-503722.log
+    commands: e47d3d5c771b
+    tree: a1cf1a925692
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T01:57:08'
+    passed: true
+    log: out/gates/post-xai-align-20261015-015708-059209.log
+    commands: e47d3d5c771b
+    tree: cb22a7bbc93b
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T01:59:31'
+    passed: true
+    log: out/gates/post-xai-align-20261015-015931-896989.log
+    commands: e47d3d5c771b
+    tree: 6839e205bbaa
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T02:01:38'
+    passed: true
+    log: out/gates/post-xai-align-20261015-020138-465502.log
+    commands: e47d3d5c771b
+    tree: 6839e205bbaa
+    host: Yannis-Workstation-IA
+  - date: '2026-10-15T02:03:05'
+    passed: true
+    log: out/gates/post-xai-align-20261015-020305-898803.log
+    commands: e47d3d5c771b
+    tree: 78f1b723b6ff
+    host: Yannis-Workstation-IA
+  results: post matches the JIIM paper; review round 2 accept
