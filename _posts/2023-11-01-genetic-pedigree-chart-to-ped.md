@@ -7,7 +7,7 @@ categories: research-project
 thumbnail: assets/img/projects/genetic-pedigree/demo.gif
 giscus_comments: false
 date: 2023-11-01
-featured: true
+featured: false
 ---
 
 Clinicians assessing hereditary cancer risk rely on **pedigree charts** — hand-drawn or digitized family trees encoding relationships, sex, and disease history across generations. These charts are the direct input to risk-assessment tools such as [CanRisk](https://www.canrisk.org/), but turning a scanned or photographed pedigree into structured, machine-readable data is still largely a manual task.

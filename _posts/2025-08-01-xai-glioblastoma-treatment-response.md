@@ -7,7 +7,7 @@ categories: research-internship
 thumbnail: assets/img/projects/project6/saliency_evolution_simple_true_positive.gif
 giscus_comments: false
 date: 2025-08-01
-featured: true
+featured: false
 ---
 
 Deep learning models can predict glioblastoma overall survival from post-operative MRI, but high accuracy can mask reliance on shortcuts. As a **Research and Development Intern in Explainability** at the Centre François Baclesse (03/03/2025–01/08/2025), I worked on a framework to audit *why* such a model makes its predictions, and whether its explanations help clinicians.

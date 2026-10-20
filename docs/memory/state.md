@@ -1,6 +1,6 @@
 # Project state
 
-Updated 2026-10-15. Short by principle (60 lines at most): details are in the linked files.
+Updated 2026-10-20. Short by principle (60 lines at most): details are in the linked files.
 
 ## In one sentence
 
@@ -14,7 +14,7 @@ online at <https://vendenix.github.io/portfolio/>; content is up to date as of t
 | --- | --- |
 | About page | bio rewritten 2026-08-07 (contract at Centre François Baclesse over, looking for a CIFRE PhD / research engineer position); CV carousel as a click-to-reveal easter egg (D-007) |
 | CV | `_data/cv.yml` + PDF `assets/pdf/cv_romain_andres_data_scientist.pdf`, updated 2026-10-15 (XAI paper published in JIIM, online 2026-10-13, DOI link, code link VendenIX only) |
-| Projects | 7 posts in `_posts/` (2021 → 2025) |
+| Projects | 7 posts in `_posts/` (2021 → 2025), newest first; no pinned (`featured`) cards since 2026-10-20 (owner: too heavy) |
 | Publications | `_bibliography/papers.bib` (NeuroImage 2025 co-first author; XAI glioblastoma first author, JIIM 2026, online 2026-10-13, doi 10.1007/s10278-026-02381-5); the project post follows the published paper |
 | Theme | al-folio, W3C-clean production output since 2026-08-09 (P-005, P-006) |
 | CI / deployment | every push to `main` deploys (`.github/workflows/main.yml`, checked on the Actions history 2026-10-15); owner's routine: `portfolio publish` (D-009) |

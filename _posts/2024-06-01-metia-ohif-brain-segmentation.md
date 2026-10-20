@@ -7,7 +7,7 @@ categories: research-internship
 thumbnail: assets/img/projects/project1/screenPicture.gif
 giscus_comments: false
 date: 2024-06-01
-featured: true
+featured: false
 ---
 
 In radiotherapy treatment planning, clinicians manually contour the brain lesions to be treated on MRI — a slow, repetitive task. A deep learning model developed during an earlier Master's project at IDM Caen offered a way to automate this delineation; my job was to take that model out of the lab and into clinical practice.
