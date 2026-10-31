@@ -24,31 +24,35 @@ layout: default
         {% endif %}
 
         {% if page.profile.carousel and page.profile.carousel_images %}
-          <div class="cv-carousel" data-interval="{{ page.profile.carousel_interval | default: 3500 }}">
-            {% for img in page.profile.carousel_images %}
-              {% assign img_src = img.path | prepend: 'assets/img/' | relative_url %}
-              <img
-                {% if forloop.first %}
-                  src="{{ img_src }}"
-                {% else %}
-                  {% comment %}
-                    Deferred: everything but the first frame is only fetched
-                    once the easter egg is actually triggered, so a page load
-                    that never clicks the photo doesn't pay for ~16 extra
-                    images (one of them a multi-MB GIF) it'll never show.
-                    `src` is still required (img without src/srcset fails W3C
-                    validation), so it points at an inline 1x1 transparent
-                    GIF -- a couple dozen bytes already inlined in the HTML,
-                    not a real request -- until the real one is swapped in.
-                  {% endcomment %}
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-                  data-lazy-src="{{ img_src }}"
-                {% endif %}
-                class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
-                alt="{{ img.label }}"
-                {% if img.duration %}data-duration="{{ img.duration }}"{% endif %}
-              >
-            {% endfor %}
+          <div class="cv-portrait">
+            <div class="cv-carousel" data-interval="{{ page.profile.carousel_interval | default: 3500 }}">
+              {% for img in page.profile.carousel_images %}
+                {% assign img_src = img.path | prepend: 'assets/img/' | relative_url %}
+                <img
+                  {% if forloop.first %}
+                    src="{{ img_src }}"
+                  {% else %}
+                    {% comment %}
+                      Deferred: the carousel plays on load, but each frame is
+                      only fetched a couple of steps before it is shown, so
+                      the first paint doesn't pay for ~16 images (one of them
+                      a multi-MB GIF). `src` is still required (img without
+                      src/srcset fails W3C validation), so it points at an
+                      inline 1x1 transparent GIF until the real one is
+                      swapped in.
+                    {% endcomment %}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                    data-lazy-src="{{ img_src }}"
+                  {% endif %}
+                  class="{{ profile_image_class }} cv-carousel-frame{% if forloop.first %} is-active{% endif %}"
+                  alt="{{ img.label }}"
+                  {% if img.duration %}data-duration="{{ img.duration }}"{% endif %}
+                >
+              {% endfor %}
+            </div>
+            {% if page.profile.bubble %}
+              <p class="cv-bubble">{{ page.profile.bubble }}</p>
+            {% endif %}
           </div>
           <div class="cv-carousel-caption">
             {% for img in page.profile.carousel_images %}
@@ -66,18 +70,31 @@ layout: default
                 carousel.dataset.cvCarouselInit = '1';
 
                 var frames = carousel.querySelectorAll('.cv-carousel-frame');
-                var caption = carousel.parentElement.querySelector('.cv-carousel-caption');
+                var caption = carousel.closest('.profile').querySelector('.cv-carousel-caption');
                 var labels = caption ? caption.querySelectorAll('.cv-carousel-label') : [];
                 var defaultDelay = parseInt(carousel.dataset.interval, 10) || 3500;
                 if (frames.length < 2) return;
 
-                // Hidden feature: the photo looks like an ordinary static
-                // portrait (just the first frame, no caption) until clicked --
-                // only then does it start cycling through the CV techniques.
-                // Click again to stop and reset back to the plain photo.
+                // Plays on load (D-010, replaces the click-to-reveal easter
+                // egg of D-007); a click pauses / resumes on the current
+                // frame. With prefers-reduced-motion it stays on the first
+                // frame until clicked.
                 var i = 0;
                 var timer = null;
                 var playing = false;
+
+                function load(idx) {
+                  var f = frames[idx % frames.length];
+                  if (f.dataset.lazySrc) {
+                    f.src = f.dataset.lazySrc;
+                    f.removeAttribute('data-lazy-src');
+                  }
+                }
+
+                function preloadAhead() {
+                  load(i + 1);
+                  load(i + 2);
+                }
 
                 function showFrame(idx) {
                   frames.forEach(function (f, fi) {
@@ -91,57 +108,48 @@ layout: default
                 function advance() {
                   i = (i + 1) % frames.length;
                   var next = frames[i];
+                  load(i);
                   if (next.src.indexOf('.gif') !== -1) {
                     // GIFs keep animating in the background even while hidden
                     // (opacity: 0), so without this they'd show up mid-loop
                     // instead of replaying from the first frame each time.
                     // Re-assigning the *same* src (rather than cache-busting
                     // with a query string) still restarts the animation in
-                    // every major browser, but serves it from cache instead
-                    // of re-fetching the whole file over the network every
-                    // cycle -- that re-fetch delay was causing a visible
-                    // flicker for larger GIFs.
+                    // every major browser, but serves it from cache.
                     var base = next.dataset.baseSrc || next.src;
                     next.dataset.baseSrc = base;
                     next.src = '';
                     next.src = base;
                   }
                   showFrame(i);
+                  preloadAhead();
                   // per-image data-duration (e.g. a GIF that needs longer to
                   // play out) overrides the carousel's default interval
                   var delay = parseInt(next.dataset.duration, 10) || defaultDelay;
                   timer = setTimeout(advance, delay);
                 }
 
-                function stop() {
+                function pause() {
                   playing = false;
                   clearTimeout(timer);
-                  i = 0;
-                  showFrame(0);
-                  if (caption) caption.classList.remove('is-playing');
                 }
 
-                function start() {
+                function play() {
                   playing = true;
-                  // first activation only: this is when the deferred frames
-                  // (everything but the first) actually start downloading
-                  frames.forEach(function (f) {
-                    if (f.dataset.lazySrc) {
-                      f.src = f.dataset.lazySrc;
-                      f.removeAttribute('data-lazy-src');
-                    }
-                  });
-                  if (caption) caption.classList.add('is-playing');
+                  preloadAhead();
                   timer = setTimeout(advance, defaultDelay);
                 }
 
                 carousel.addEventListener('click', function () {
                   if (playing) {
-                    stop();
+                    pause();
                   } else {
-                    start();
+                    play();
                   }
                 });
+
+                var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!reduceMotion) play();
               });
             });
           </script>

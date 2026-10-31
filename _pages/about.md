@@ -10,33 +10,34 @@ profile:
   image_circular: true
   carousel: true
   carousel_interval: 3500
+  bubble: "I fight entropy"
   carousel_images:
-    - path: cv_carousel/01_original.jpg
-      label: "Original photo"
-    - path: cv_carousel/02_eigen.jpg
-      label: "Eigenvalue decomposition"
-    - path: cv_carousel/03_gradcam.jpg
-      label: "Grad-CAM (CLIP)"
-    - path: cv_carousel/04_binary_digits.png
-      label: "Binary digit rendering"
     - path: cv_carousel/05_edges.png
       label: "Edge detection"
-    - path: cv_carousel/06_watershed.png
-      label: "Watershed segmentation"
+    - path: cv_carousel/01_original.jpg
+      label: "Original photo"
+    - path: cv_carousel/03_gradcam.jpg
+      label: "Grad-CAM (CLIP)"
     - path: cv_carousel/07_semantic_seg.jpg
       label: "Semantic segmentation"
+    - path: cv_carousel/06_watershed.png
+      label: "Watershed segmentation"
     - path: cv_carousel/08_yolo.jpg
       label: "Object detection"
-    - path: cv_carousel/09_style_transfer.jpg
-      label: "Neural style transfer"
     - path: cv_carousel/10_depth.jpg
       label: "Depth estimation"
     - path: cv_carousel/11_facemesh.jpg
       label: "Face mesh"
-    - path: cv_carousel/12_ascii.png
-      label: "ASCII art"
+    - path: cv_carousel/02_eigen.jpg
+      label: "Eigenvalue decomposition"
     - path: cv_carousel/13_orb.jpg
       label: "ORB keypoints"
+    - path: cv_carousel/09_style_transfer.jpg
+      label: "Neural style transfer"
+    - path: cv_carousel/04_binary_digits.png
+      label: "Binary digit rendering"
+    - path: cv_carousel/12_ascii.png
+      label: "ASCII art"
     - path: cv_carousel/14_voronoi.jpg
       label: "Voronoi diagram"
     - path: cv_carousel/15_fractal.jpg

@@ -42,7 +42,7 @@ The theme's output was cleaned of every W3C validation error (commit 37021283); 
 not reintroduce one. Checked on a real production build (`tools/build.sh`), not on the dev
 server. Source: commits 37021283, aadbcefa, 9b3ae636.
 
-### D-007 · 2026-08-08 · Sober, academic tone; the CV carousel is an easter egg · `content` `design`
+### D-007 · 2026-08-08 · Sober, academic tone; the CV carousel is an easter egg (carousel part superseded by D-010) · `content` `design`
 Audience: CIFRE PhD supervisors and research teams. Sixteen rotating CV renderings by default
 read as less serious: the profile photo looks static until clicked, then cycles with captions.
 Visible playful features stay opt-in. Source: owner feedback, commit 9f91130f.
@@ -59,3 +59,12 @@ The GitHub Pages source is GitHub Actions: every push to `main` deploys (runs of
 `status`; `publish` builds and checks locally, commits, pushes `main` and follows the workflow run
 through the public GitHub API (no `gh` CLI needed). Agents never run `publish` (D-002). Source:
 owner request 2026-10-15.
+
+### D-010 · 2026-10-31 · The CV carousel plays by default, with a speech bubble · `content` `design`
+Supersedes the carousel part of D-007 (the sober tone stays). The carousel starts on the
+edge-detection frame and plays on page load, caption visible; a click pauses / resumes; with
+`prefers-reduced-motion` it stays still until clicked. Frames are still fetched lazily, two steps
+ahead. A speech bubble (`profile.bubble` in `_pages/about.md`, "I fight entropy") sits at the top
+right of the portrait. Frame order: edges, original photo, then the techniques closest to the
+owner's field (Grad-CAM, segmentation, detection) before the playful ones, morph GIF last, since
+most visitors see only the first 3-4 frames. Source: owner request 2026-10-31.
